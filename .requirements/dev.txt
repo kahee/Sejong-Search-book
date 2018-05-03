@@ -1,0 +1,4 @@
+Django==2.0.5
+django-json-secrets==0.1.9
+pytz==2018.4
+raven==6.7.0
