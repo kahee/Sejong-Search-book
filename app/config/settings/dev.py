@@ -15,7 +15,7 @@ INSTALLED_APPS += [
     'django_extensions',
 ]
 
-# # Media(user-uploaded file)을 위한 스토리지
-# DEFAULT_FILE_STORAGE = 'config.storage.DefaultFileStorage'
-# # # Static files(collectstatic) 을 위한 스토리지
-# STATICFILES_STORAGE = 'config.storage.StaticFileStorage'
+# Media(user-uploaded file)을 위한 스토리지
+DEFAULT_FILE_STORAGE = 'config.storage.DefaultFileStorage'
+# # Static files(collectstatic) 을 위한 스토리지
+STATICFILES_STORAGE = 'config.storage.StaticFileStorage'
