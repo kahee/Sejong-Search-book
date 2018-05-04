@@ -21,4 +21,6 @@ RUN        cp -f    /srv/project/.config/local/nginx.conf          /etc/nginx/ng
 
 RUN        cp -f /srv/project/.config/local/supervisord.conf       /etc/supervisor/conf.d/
 
+WORKDIR     /srv/project/app
+RUN         python
 CMD        pkill nginx; supervisord -n

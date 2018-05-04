@@ -12,16 +12,20 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import json
 import os
 import raven
+# from djs import import_secrets
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
 SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
 SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
+# import_secrets()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
 SECRET_KEY = SECRETS['SECRET_KEY']
+
+AUTH_USER_MODEL = 'members.User'
 
 # Application definition
 INSTALLED_APPS = [
@@ -33,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'raven.contrib.django.raven_compat',
+
+    'members',
 ]
 
 MIDDLEWARE = [
