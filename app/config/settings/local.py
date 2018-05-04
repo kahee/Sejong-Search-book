@@ -3,8 +3,10 @@ from .base import *
 DEBUG = True
 ALLOWED_HOSTS = []
 WSGI_APPLICATION = 'config.wsgi.local.application'
-#
-# INSTALLED_APPS +=[]
+
+INSTALLED_APPS += [
+    'django_extensions',
+]
 
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
