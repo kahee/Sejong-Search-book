@@ -1,8 +1,6 @@
 from .base import *
 
-secrets = json.loads(open(SECRETS_DEV, 'rt').read())
-
-DATABASES = secrets['DATABASES']
+import_secrets()
 
 DEBUG = True
 ALLOWED_HOSTS = [
@@ -13,9 +11,10 @@ ALLOWED_HOSTS = [
 WSGI_APPLICATION = 'config.wsgi.dev.application'
 INSTALLED_APPS += [
     'django_extensions',
+    'storages',
 ]
 
 # Media(user-uploaded file)을 위한 스토리지
-DEFAULT_FILE_STORAGE = 'config.storage.DefaultFileStorage'
+DEFAULT_FILE_STORAGE = 'config.storage.DefaultFilesStorage'
 # # Static files(collectstatic) 을 위한 스토리지
-STATICFILES_STORAGE = 'config.storage.StaticFileStorage'
+STATICFILES_STORAGE = 'config.storage.StaticFilesStorage'

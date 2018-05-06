@@ -12,24 +12,27 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import json
 import os
 import raven
+import requests
 
-# from djs import import_secrets
+from djs import import_secrets
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
+SECRETS_MODULES = {
+    # Module's full path string
+    'raven': 'raven',
+    # Python module object
+    'requests': requests,
+}
+
 SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
-SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
-SECRETS_DEV = os.path.join(SECRETS_DIR, 'dev.json')
-SECRETS_PRODUCTION = os.path.join(SECRETS_DIR, 'production.json')
-# import_secrets()
+import_secrets()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
-SECRET_KEY = SECRETS['SECRET_KEY']
-
-
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'members.User'
 
@@ -110,10 +113,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-RAVEN_CONFIG = {
-    'dsn': SECRETS['DSN'],
-    'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-}
 
 # Sentry
 LOGGING = {

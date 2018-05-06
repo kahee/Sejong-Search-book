@@ -8,10 +8,6 @@ INSTALLED_APPS += [
     'django_extensions',
 ]
 
-STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
-MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
 
 DATABASES = {
     'default': {
