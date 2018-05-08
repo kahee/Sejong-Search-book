@@ -1,0 +1,16 @@
+FROM        python:3.6.4-slim
+MAINTAINER  yuygh131@gmail.com
+
+ENV         LANG    C.UTF-8
+
+#apt-get으로 nginx, supervisor 설치
+RUN         apt-get -y update
+RUN         apt-get -y dist-upgrade
+RUN         apt-get -y install build-essential nginx supervisor
+
+#requirements만 복사
+COPY        .requirements /srv/.requirements
+
+WORKDIR     /srv
+RUN         pip install --upgrade pip
+RUN         pip install -r /srv/.requirements/production.txt

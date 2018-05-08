@@ -1,0 +1,27 @@
+FROM            python:3.6.4-slim
+MAINTAINER      ygh131test@gmail.com
+
+RUN             apt-get -y update
+RUN             apt-get -y dist-upgrade
+RUN             apt-get -y install nginx supervisor build-essential
+
+COPY            .requirements /srv/.requirements
+
+WORKDIR         /srv
+RUN             pip install -r /srv/.requirements/dev.txt
+
+ENV             BUILD_MODE             production
+ENV             DJANGO_SETTINGS_MODULE config.settings.production
+
+COPY            . /srv/project
+
+
+RUN             cp -f /srv/project/.config/${BUILD_MODE}/nginx.conf /etc/nginx/nginx.conf
+RUN             cp -f /srv/project/.config/${BUILD_MODE}/nginx-app.conf /etc/nginx/sites-available/
+RUN             rm -f /etc/nginx/sites-enabled/*
+RUN             ln -sf /etc/nginx/sites-available/nginx-app.conf /etc/nginx/sites-enabled/
+
+RUN             cp -f /srv/project/.config/${BUILD_MODE}/supervisord.conf /etc/supervisor/conf.d/
+
+
+CMD             pkill nginx; supervisord -n
