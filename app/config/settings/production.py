@@ -3,6 +3,7 @@ import_secrets()
 
 DEBUG = True
 ALLOWED_HOSTS = [
+    '.zoejoy.kr',
     '.elasticbeanstalk.com',
     '127.0.0.1',
     'localhost',
