@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
 SECRETS_MODULES = {
-    # Module's full path string
+    # Module's full path stri1ng
     'raven': 'raven',
     # Python module object
     'requests': requests,
