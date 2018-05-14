@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def keyboard(request):
     return JsonResponse({
-        'type': 'buttons',
+        'type': 'text',
         'buttons': ['test', '2']
     })
 
