@@ -10,7 +10,7 @@ class Crawling():
         # options.add_argument("disable-gpu")
         # self.driver = webdriver.Chrome('chromedriver', chrome_options=options)
 
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome('/home/kahee/chromedriver')
         # self.driver = webdriver.Firefox(executable_path='/home/kahee/geckodriver')
 
     def login_process(self):
