@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
-        'buttons': ['1', '2']
+        'buttons': ['test', '2']
     })
 
 
