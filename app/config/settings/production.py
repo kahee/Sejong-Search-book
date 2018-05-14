@@ -10,6 +10,7 @@ ALLOWED_HOSTS = [
     '110.76.143.234',
     '110.76.143.235',
     '110.76.143.236',
+    '172.31.27.153',
 ]
 WSGI_APPLICATION = 'config.wsgi.production.application'
 INSTALLED_APPS += [
