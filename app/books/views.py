@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 
 
 def keyboard(request):
@@ -26,7 +27,7 @@ def search_book(request):
     content = request.JSON['content']
 
     if content.startwith('test'):
-        response = '응답했습니다.'
+        response = '응답했습니다.'+user_key+''+type
 
     else:
         response = '해당명령어는 아직지원하지 않습니다.'
