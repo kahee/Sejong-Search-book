@@ -13,7 +13,7 @@ def keyboard(request):
         'buttons': ['1', '2']
     })
 
-
+@csrf_exempt
 def search_book(request):
     if request.method == 'POST':
         request.JSON = json.loads(request.body.decode('utf-8'))
