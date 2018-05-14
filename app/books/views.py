@@ -3,7 +3,6 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render
 
-
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
@@ -18,28 +17,22 @@ def keyboard(request):
 @csrf_exempt
 def search_book(request):
     if request.method == 'POST':
-        request.JSON = json.loads(request.body.decode('utf-8'))
+        request_json = json.loads(request.body.decode('utf-8'))
 
     else:
-        request.JSON = {}
+        request_json = {}
 
-    user_key = request.JSON['user_key']
-    type = request.JSON['type']
-    content = request.JSON['content']
+    user_key = request_json['user_key']
+    content = request_json['content']
 
     if content.startwith('test'):
-        response = '응답했습니다.'+user_key+''+type
+        response = '응답했습니다.' + user_key
 
     else:
         response = '해당명령어는 아직지원하지 않습니다.'
 
     return JsonResponse({
-        'message': {
-            'text': response
-        },
-        'keyboard': {
-            'type': 'buttons',
-            'buttons': ['Tron', 'Bitcoin', 'ADA']
+        "message": {
+            "text": response
         }
-
     })
