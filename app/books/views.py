@@ -16,16 +16,12 @@ def keyboard(request):
 
 @csrf_exempt
 def search_book(request):
-    if request.method == 'POST':
-        request_json = json.loads(request.body.decode('utf-8'))
+    message = request.body.decode('utf-8')
+    return_json_str = json.loads(message)
+    user_key = return_json_str['user_key']
+    content = return_json_str['content']
 
-    else:
-        request_json = {}
-
-    user_key = request_json['user_key']
-    content = request_json['content']
-
-    if content.startwith('test'):
+    if content == 'test':
         response = '응답했습니다.' + user_key
 
     else:
