@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'raven.contrib.django.raven_compat',
 
+    'books',
     'members',
 ]
 
@@ -101,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
