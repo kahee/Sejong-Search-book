@@ -7,6 +7,9 @@ ALLOWED_HOSTS = [
     '.elasticbeanstalk.com',
     '127.0.0.1',
     'localhost',
+    '110.76.143.234',
+    '110.76.143.235',
+    '110.76.143.236',
 ]
 WSGI_APPLICATION = 'config.wsgi.production.application'
 INSTALLED_APPS += [
