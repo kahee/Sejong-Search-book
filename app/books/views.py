@@ -7,12 +7,13 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
-#
-# def keyboard(request):
-#     return JsonResponse({
-#         'type': 'buttons',
-#         'buttons': ['1', '2']
-#     })
+
+def keyboard(request):
+    return JsonResponse({
+        'type': 'buttons',
+        'buttons': ['1', '2']
+    })
+
 
 @csrf_exempt
 def search_book(request):
@@ -35,5 +36,10 @@ def search_book(request):
     return JsonResponse({
         'message': {
             'text': response
+        },
+        'keyboard': {
+            'type': 'buttons',
+            'buttons': ['Tron', 'Bitcoin', 'ADA']
         }
+
     })
