@@ -4,4 +4,5 @@ from books import views
 
 urlpatterns = [
     path('keyboard/', views.keyboard, name='keyboard'),
+    path('message/', views.search_book, name='message'),
 ]
