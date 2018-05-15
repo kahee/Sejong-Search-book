@@ -1,5 +1,6 @@
 raven<6.7
 uWSGI<2.1
+beautifulsoup4<=4.6.0
 boto3<1.7
 Django<2.1
 django-extensions==2.0.7
