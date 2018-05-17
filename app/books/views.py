@@ -3,12 +3,13 @@ from django.http import JsonResponse
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
+from utils.crawling import search_book
 
 
 def keyboard(request):
 
     return JsonResponse({
-        'type': 'buttons',
+        'type': 'text',
         'buttons': ['1', '2']
     })
 
@@ -20,9 +21,11 @@ def message(request):
     return_str = return_json_str['content']
     return_user = return_json_str['user_key']
 
+    books = search_book(return_str)
+
     return JsonResponse({
         'message': {
-            'text': "you type " + return_str + "!"+return_user
+            'text': books
         },
         'keyboard': {
             'type': 'buttons',
