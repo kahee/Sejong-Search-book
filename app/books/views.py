@@ -25,7 +25,7 @@ def message(request):
 
     return JsonResponse({
         'message': {
-            'text': books[0]['title']
+            'text': books,
         },
     })
 
