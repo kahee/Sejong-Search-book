@@ -22,15 +22,13 @@ def message(request):
     return_user = return_json_str['user_key']
 
     books = search_book(return_str)
+    print(books)
+
 
     return JsonResponse({
         'message': {
             'text': books
         },
-        'keyboard': {
-            'type': 'buttons',
-            'buttons': ['1', '2']
-        }
     })
 
 # def keyboard(request):
