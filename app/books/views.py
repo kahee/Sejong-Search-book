@@ -7,7 +7,6 @@ from crawling import search_book
 
 
 def keyboard(request):
-
     return JsonResponse({
         'type': 'text',
         'buttons': ['1', '2']
@@ -24,10 +23,9 @@ def message(request):
     books = search_book(return_str)
     print(books)
 
-
     return JsonResponse({
         'message': {
-            'text': books
+            'text': books[0]['title']
         },
     })
 
