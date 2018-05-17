@@ -22,8 +22,9 @@ def books_crawler(keyword):
     soup = BeautifulSoup(response.text, 'lxml')
 
     body = soup.find('ul', class_='listType01').find_all('div', class_='body')
-    books_list = list()
-    for book in body:
+    books_list = dict()
+
+    for i, book in enumerate(body):
         for num, item in enumerate(book.contents):
             if num == 1:
                 book_title = item.get_text(strip=True)
@@ -33,13 +34,11 @@ def books_crawler(keyword):
         book_info = re.sub(r'/', '', book_info)
         book_status = book.find('p', class_='tag').get_text(strip=True)
         book_status = re.sub(r'\t', '', book_status)
-        books_list.append(
-            {
-                'title': book_title,
-                'info': book_info,
-                'status': book_status,
-            }
-        )
+        books_list[i] = {
+            'title': book_title,
+            'info': book_info,
+            'status': book_status,
+        }
 
     if not books_list:
         return '일치하는 검색 결과가 없습니다.'
@@ -71,5 +70,5 @@ def search_book(search):
 # 사용자가 입력하는 경우 '제목,출판사,저자'
 # TITL,PUBN,AUTH
 #
-# result = keyword_split('말의품격,생능,')
+# result = search_book('컴퓨터공,,')
 # print(result)
