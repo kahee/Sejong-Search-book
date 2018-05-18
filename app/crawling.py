@@ -22,7 +22,7 @@ def books_crawler(keyword):
     soup = BeautifulSoup(response.text, 'lxml')
     body = soup.find('ul', class_='listType01').find_all('div', class_='body')
     # books_list = dict()
-    books = response.url + '\n'
+    books = ''
 
     for i, book in enumerate(body):
         for num, item in enumerate(book.contents):
@@ -47,7 +47,7 @@ def books_crawler(keyword):
         books = '검색하신 결과가 없습니다.'
         return books
 
-    return books
+    return books, response.url
 
 
 def search_book(search):

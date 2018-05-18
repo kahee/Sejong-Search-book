@@ -20,11 +20,14 @@ def message(request):
 
     content = return_json_str['content']
     user = return_json_str['user_key']
-    books = search_book(content)
+    books, url = search_book(content)
     print(books)
 
     return JsonResponse({
         'message': {
             'text': books,
+            'label': '더 많은 검색 결과 보기',
+            'url' : url,
         },
+
     })
