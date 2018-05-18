@@ -26,8 +26,9 @@ def message(request):
     return JsonResponse({
         'message': {
             'text': books,
-            'label': '더 많은 검색 결과 보기',
-            'url' : url,
         },
-
+        "message_button": {
+            'label': '더 많은 검색 결과 보기',
+            'url': url,
+        }
     })
