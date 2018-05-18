@@ -22,7 +22,7 @@ def books_crawler(keyword):
     soup = BeautifulSoup(response.text, 'lxml')
     body = soup.find('ul', class_='listType01').find_all('div', class_='body')
     # books_list = dict()
-    books = ''
+    books = response.url + '\n'
 
     for i, book in enumerate(body):
         for num, item in enumerate(book.contents):
