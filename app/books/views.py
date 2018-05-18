@@ -3,7 +3,9 @@ from django.http import JsonResponse
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-from crawling import search_book
+
+from books.utils import HELP_TEXT
+from books.utils.crawling import search_book
 
 
 def keyboard(request):
@@ -19,23 +21,30 @@ def message(request):
     return_json_str = json.loads(message)
 
     content = return_json_str['content']
-    user = return_json_str['user_key']
-    books, url = search_book(content)
 
+    if content == '도움말':
+        return JsonResponse({
+                'message': {
+                    'text': HELP_TEXT,
+                },
+            })
 
-    if not url:
+    else:
+        user = return_json_str['user_key']
+        books, url = search_book(content)
+        if not url:
+            return JsonResponse({
+                'message': {
+                    'text': books,
+                },
+            })
+
         return JsonResponse({
             'message': {
                 'text': books,
+                "message_button": {
+                    'label': '자세한 검색 결과 보기',
+                    'url': url,
+                }
             },
         })
-
-    return JsonResponse({
-        'message': {
-            'text': books,
-            "message_button": {
-                'label': '자세한 검색 결과 보기',
-                'url': url,
-            }
-        },
-    })

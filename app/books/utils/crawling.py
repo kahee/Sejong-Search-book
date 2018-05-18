@@ -3,6 +3,13 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+__all__ = (
+    'books_crawler',
+    'search_book_title',
+    'search_book_detail',
+    'search_book',
+)
+
 
 def books_crawler(keyword):
     """
@@ -51,7 +58,17 @@ def books_crawler(keyword):
     return books, response.url
 
 
-def search_book(search):
+def search_book_title(search):
+    """
+    제목을 통한 도서 검색 키워드 생성
+    :param search:
+    :return:
+    """
+    keyword = 'TITL:' + search
+    return books_crawler(keyword)
+
+
+def search_book_detail(search):
     """
     사용자가 search('제목,출판사,저자')를 입력하면 항목에 따라
     keyword를 생성후 크롤링 함수 실행
@@ -60,24 +77,27 @@ def search_book(search):
     :return: search에 입력한 책 정보 출력
     """
     keyword = ''
-    if search.count(',') is 2:
-        search_list = search.split(',')
+    search_list = search.split(',')
 
-        if search_list[0] is not '':
-            keyword = 'TITL:' + search_list[0]
-        if search_list[1] is not '':
-            keyword = keyword + "|" + "PUBN:" + search_list[1]
-        if search_list[2] is not '':
-            keyword = keyword + "|" + "AUTH:" + search_list[2]
+    if search_list[0] is not '':
+        keyword = 'TITL:' + search_list[0]
+    if search_list[1] is not '':
+        keyword = keyword + "|" + "PUBN:" + search_list[1]
+    if search_list[2] is not '':
+        keyword = keyword + "|" + "AUTH:" + search_list[2]
 
-        return books_crawler(keyword)
+    return books_crawler(keyword)
+
+
+def search_book(keyword):
+    if keyword.count(',') is 2:
+        return search_book_detail(keyword)
 
     else:
-        return '검색어를 올바르게 입력해주세요\n' + '도서명,출판사,저자\n' + 'ex) 컴퓨터구로존,생능,'
+        return search_book_title(keyword)
 
 
-# 사용자가 입력하는 경우 '제목,출판사,저자'
-# TITL,PUBN,AUTH
-
-result = search_book('베르나르 베르베')
-print(result)
+# # 사용자가 입력하는 경우 '제목,출판사,저자'
+# # TITL,PUBN,AUTH
+# result = search_book('개미,중앙일보,')
+# print(result)
