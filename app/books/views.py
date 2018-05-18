@@ -17,54 +17,17 @@ def keyboard(request):
 def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
-    return_str = return_json_str['content']
-    return_user = return_json_str['user_key']
 
-    books = search_book(return_str)
-    print(books)
+    if not return_json_str['content']:
+        books = '검색어를 입력해주세요\n' + '도서명,출판사,저자\n' + 'ex) 컴퓨터구로존,생능,'
+
+    else:
+        content = return_json_str['content']
+        user = return_json_str['user_key']
+        books = search_book(content)
 
     return JsonResponse({
         'message': {
             'text': books,
         },
     })
-
-# def keyboard(request):
-#     return JsonResponse({
-#         'type': 'text',
-#         'buttons': ['test', '2']
-#     })
-#
-#
-# @csrf_exempt
-# def search_book(request):
-#     message = ((request.body).decode('utf-8'))
-#     return_json_str = json.loads(message)
-#     return_str = return_json_str['content']
-#
-#     return JsonResponse({
-#         'message': {
-#             'text': "you type " + return_str + "!"
-#         },
-#         'keyboard': {
-#             'type': 'buttons',
-#             'buttons': ['1', '2']
-#         }
-#     })
-#
-#     # message = request.body.decode('utf-8')
-#     # return_json_str = json.loads(message)
-#     # user_key = return_json_str['user_key']
-#     # content = return_json_str['content']
-#     #
-#     # if content == 'test':
-#     #     response = '응답했습니다.' + user_key
-#     #
-#     # else:
-#     #     response = '해당명령어는 아직지원하지 않습니다.'+ user_key
-#     #
-#     # return JsonResponse({
-#     #     "message": {
-#     #         "text": response
-#     #     }
-#     # })
