@@ -45,7 +45,8 @@ def books_crawler(keyword):
 
     if not books:
         books = '검색하신 결과가 없습니다.'
-        return books
+        url = None
+        return books, url
 
     return books, response.url
 
