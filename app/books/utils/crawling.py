@@ -11,6 +11,48 @@ __all__ = (
 )
 
 
+def book_detail(book_id):
+    """
+    책 상세 정보를 크롤링하는 함수
+    :param book_id:
+    :return:
+    """
+    url = "http://library.sejong.ac.kr/search/DetailView.ax"
+    params = {
+        'sid': 2,
+        'cid': book_id
+
+    }
+
+    response = requests.get(url, params)
+    print(response.url)
+    soup = BeautifulSoup(response.text, 'lxml')
+    contents = soup.find('div', class_='contents')
+    metaDataBody = contents.find('tbody', id='metaDataBody').find_all('td')
+    items = [item.get_text(strip=True).replace(':', '') for item in metaDataBody]
+    td = iter(items)
+    book_info = dict(zip(td, td))
+    print(book_info)
+
+    return book_info
+
+
+def book_location(book_id):
+    post_format = {
+        'cid': book_id,
+    }
+
+    r = requests.post('http://library.sejong.ac.kr/search/ItemDetailSimple.axa', data=post_format)
+    test = BeautifulSoup(r.content, 'html.parser')
+    tbody = test.find('tbody').find_all('tr')
+    book_list = list()
+
+    for num, item in enumerate(tbody):
+        print(item.get_text())
+        book_list.append((item.get_text()))
+        print(book_list)
+    return book_list
+
 def books_crawler(keyword):
     """
     세종대학교 학술정보원 사이트에서 해당 keyword 정보 크롤링
@@ -26,12 +68,20 @@ def books_crawler(keyword):
     }
 
     response = requests.get(url, params)
+    print(response.url)
     soup = BeautifulSoup(response.text, 'lxml')
     body = soup.find('ul', class_='listType01').find_all('div', class_='body')
     # books_list = dict()
     books = ''
 
-    for i, book in enumerate(body):
+    for book in body:
+
+        book_numbers = book.find('a', class_='title', href=True)['href']
+        p = re.compile(r'javascript:search.goDetail[(](\d+)[)]')
+        book_id = p.search(book_numbers).group(1)
+        book_location(book_id)
+        book_detail(book_id)
+
         for num, item in enumerate(book.contents):
             if num == 1:
                 book_title = item.get_text(strip=True)
@@ -54,7 +104,6 @@ def books_crawler(keyword):
         books = '검색하신 결과가 없습니다.'
         url = None
         return books, url
-
     return books, response.url
 
 
@@ -99,5 +148,8 @@ def search_book(keyword):
 
 # # 사용자가 입력하는 경우 '제목,출판사,저자'
 # # TITL,PUBN,AUTH
-# result = search_book('개미,중앙일보,')
-# print(result)
+result = search_book('말의품격')
+print(result)
+
+# book_detail(1578922)
+# book_location(1578922)
