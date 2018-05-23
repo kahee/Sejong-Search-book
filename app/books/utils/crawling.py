@@ -1,9 +1,13 @@
 import re
-
 import requests
 from bs4 import BeautifulSoup
 
+from books.models import BookLocation
+from ..models import Book
+
 __all__ = (
+    'book_detail',
+    'book_location_crawling',
     'books_crawler',
     'search_book_title',
     'search_book_detail',
@@ -21,20 +25,29 @@ def book_detail(book_id):
     params = {
         'sid': 2,
         'cid': book_id
-
     }
 
     response = requests.get(url, params)
     soup = BeautifulSoup(response.text, 'lxml')
     contents = soup.find('div', class_='contents')
     metaDataBody = contents.find('tbody', id='metaDataBody').find_all('td')
-    items = [item.get_text(strip=True).replace(':', '') for item in metaDataBody]
+    items = [item.get_text(strip=True).replace(' :', '') for item in metaDataBody]
     td = iter(items)
-    book_info = dict(zip(td, td))
+    book_info_dict = dict(zip(td, td))
+    book_info, _ = Book.objects.get_or_create(
+        book_id=book_id,
+        book_type=book_info_dict.get('자료유형', ' '),
+        book_author=book_info_dict.get('서명 / 저자', ' '),
+        book_personnel_author=book_info_dict.get('개인저자', ' '),
+        book_issue=book_info_dict.get('발행사항', ' '),
+        book_form=book_info_dict.get('형태사항', ' '),
+        ISBN=book_info_dict.get('ISBN', ' '),
+    )
+
     return book_info
 
 
-def book_location(book_id):
+def book_location_crawling(book_id, book_info):
     """
     도서 위치 및 대출 정보를 크롤링하는 함수
     :param book_id:
@@ -52,9 +65,21 @@ def book_location(book_id):
     for item in tbody:
         td = item.find_all('td')
         book = list()
+        location_list = list()
         for num, td_item in enumerate(td):
-            if num in range(1,4):
+            if num is 0:
+                location_list.append(td_item.get_text(strip=True))
+            if num in range(1, 4):
+                location_list.append(td_item.get_text(strip=True))
                 book.append(td_item.get_text(strip=True))
+
+        book_location, _ = BookLocation.objects.get_or_create(
+            register_id=location_list[0],
+            location=location_list[1],
+            book_code=location_list[2],
+        )
+        book_info.book_location = book_location
+        book_info.save()
         books_list.append(book)
 
     return books_list
@@ -86,9 +111,9 @@ def books_crawler(keyword):
         book_id = p.search(book_numbers).group(1)
 
         # 도서 상세 정보
-        book_detail(book_id)
+        book_detail_info = book_detail(book_id)
         # 도서 위치 및 대출 여부
-        locations = book_location(book_id)
+        locations = book_location_crawling(book_id, book_detail_info)
 
         # 도서 위치 string으로 변환
         books_status = ''
@@ -118,7 +143,7 @@ def books_crawler(keyword):
         books = '검색하신 결과가 없습니다.'
         url = None
         return books, url
-    print(books)
+
     return books, response.url
 
 
@@ -160,10 +185,9 @@ def search_book(keyword):
     else:
         return search_book_title(keyword)
 
-
 # # 사용자가 입력하는 경우 '제목,출판사,저자'
 # # TITL,PUBN,AUTH
-# result = search_book('컴퓨터구조')
+# result = search_book('컴퓨터구조론,생능,')
 # print(result)
 # book_detail(1578922)
 # book_location(1578922)

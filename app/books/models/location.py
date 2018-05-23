@@ -4,7 +4,7 @@ from django.db import models
 class BookLocation(models.Model):
     register_id = models.CharField(
         verbose_name='등록번호',
-        blank=True,
+        unique=True,
         max_length=100,
     )
 

@@ -6,10 +6,7 @@ from . import UserKeyword
 
 
 class User(AbstractUser):
-    user_key = models.CharField(
-        verbose_name='user_key',
-        max_length=100,
-    )
+
     keyword = models.ForeignKey(
         UserKeyword,
         on_delete=models.CASCADE,

@@ -1,6 +1,6 @@
 from django.db import models
 
-from books.models.location import BookLocation
+from . import BookLocation
 
 
 class Book(models.Model):
@@ -36,8 +36,8 @@ class Book(models.Model):
         max_length=255,
         blank=True,
     )
-    IBSN = models.CharField(
-        verbose_name='IBSN',
+    ISBN = models.CharField(
+        verbose_name='ISBN',
         max_length=255,
         blank=True,
     )
@@ -45,4 +45,5 @@ class Book(models.Model):
         BookLocation,
         on_delete=models.CASCADE,
         related_name='book_location_list',
+        null=True,
     )
