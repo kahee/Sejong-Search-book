@@ -22,7 +22,7 @@ def message(request):
 
     content = return_json_str['content']
 
-    if content == '도움말':
+    if content == '사용법':
         return JsonResponse({
                 'message': {
                     'text': HELP_TEXT,
