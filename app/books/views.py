@@ -16,7 +16,6 @@ User = get_user_model()
 def keyboard(request):
     return JsonResponse({
         'type': 'text',
-        'buttons': ['1', '2']
     })
 
 
