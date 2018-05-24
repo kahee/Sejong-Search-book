@@ -12,8 +12,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         keyword = options['keyword'].pop()
-        result = search_book(keyword)
-        result = ''.join(result)
+        result, url = search_book(keyword)
 
         return result
-

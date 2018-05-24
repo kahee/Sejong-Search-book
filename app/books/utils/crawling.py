@@ -139,7 +139,7 @@ def books_crawler(keyword):
 
     if not body:
         books = '검색하신 결과가 없습니다.'
-        url = ' '
+        url = None
         return books, url
 
 
