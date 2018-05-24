@@ -78,6 +78,7 @@ def book_location_crawling(book_id, book_info):
             location=location_list[1],
             book_code=location_list[2],
         )
+
         book_info.book_location = book_location
         book_info.save()
         books_list.append(book)
@@ -102,49 +103,44 @@ def books_crawler(keyword):
     response = requests.get(url, params)
     soup = BeautifulSoup(response.text, 'lxml')
     body = soup.find('ul', class_='listType01').find_all('div', class_='body')
-    # books_list = dict()
-
     books = ''
-    for book in body:
-        book_numbers = book.find('a', class_='title', href=True)['href']
-        p = re.compile(r'javascript:search.goDetail[(](\d+)[)]')
-        book_id = p.search(book_numbers).group(1)
 
-        # 도서 상세 정보
-        book_detail_info = book_detail(book_id)
-        # 도서 위치 및 대출 여부
-        locations = book_location_crawling(book_id, book_detail_info)
+    if body:
 
-        # 도서 위치 string으로 변환
-        books_status = ''
-        for items in locations:
-            books_status = books_status + ', '.join(str(item) for item in items) + '\n'
+        for book in body:
+            book_numbers = book.find('a', class_='title', href=True)['href']
+            p = re.compile(r'javascript:search.goDetail[(](\d+)[)]')
+            book_id = p.search(book_numbers).group(1)
 
-        for num, item in enumerate(book.contents):
-            if num == 1:
-                book_title = item.get_text(strip=True)
-            if num == 4:
-                book_info = item.strip()
-        book_info = re.sub(r'/', '', book_info)
+            # 도서 상세 정보
+            book_detail_info = book_detail(book_id)
+            # 도서 위치 및 대출 여부
+            locations = book_location_crawling(book_id, book_detail_info)
 
-        # book_status = book.find('p', class_='tag').get_text(strip=True)
-        # book_status = re.sub(r'\t', '', book_status)
-        # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
+            # 도서 위치 string으로 변환
+            books_status = ''
+            for items in locations:
+                books_status = books_status + ', '.join(str(item) for item in items) + '\n'
 
-        # books_list[i] = {
-        #     'title': book_title,
-        #     'info': book_info,
-        #     'status': book_status,
-        # }
+            for num, item in enumerate(book.contents):
+                if num == 1:
+                    book_title = item.get_text(strip=True)
+                if num == 4:
+                    book_info = item.strip()
+            book_info = re.sub(r'/', '', book_info)
 
-        books = books + book_title + "\n" + book_info + "\n" + books_status + "---------" + "\n"
+            # book_status = book.find('p', class_='tag').get_text(strip=True)
+            # book_status = re.sub(r'\t', '', book_status)
+            # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
 
-    if not books:
+            books = books + book_title + "\n" + book_info + "\n" + books_status + "---------" + "\n"
+
+            return books, response.url
+
+    if not body:
         books = '검색하신 결과가 없습니다.'
-        url = None
+        url = ' '
         return books, url
-
-    return books, response.url
 
 
 def search_book_title(search):
