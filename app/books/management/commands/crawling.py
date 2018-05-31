@@ -1,7 +1,4 @@
-import string
-
 from django.core.management import BaseCommand
-
 from books.utils import search_book
 
 

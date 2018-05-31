@@ -6,16 +6,16 @@ from books.models import BookLocation
 from ..models import Book
 
 __all__ = (
-    'book_detail',
-    'book_location_crawling',
-    'books_crawler',
+    'get_book_detail',
+    'get_book_location',
+    'get_book_lists',
     'search_book_title',
     'search_book_detail',
     'search_book',
 )
 
 
-def book_detail(book_id):
+def get_book_detail(book_id):
     """
     책 상세 정보를 크롤링하는 함수
     :param book_id:
@@ -47,7 +47,7 @@ def book_detail(book_id):
     return book_info
 
 
-def book_location_crawling(book_id, book_info):
+def get_book_location(book_id, book_info):
     """
     도서 위치 및 대출 정보를 크롤링하는 함수
     :param book_id:
@@ -86,7 +86,7 @@ def book_location_crawling(book_id, book_info):
     return books_list
 
 
-def books_crawler(keyword):
+def get_book_lists(keyword):
     """
     세종대학교 학술정보원 사이트에서 해당 keyword 정보 크롤링
 
@@ -113,9 +113,9 @@ def books_crawler(keyword):
             book_id = p.search(book_numbers).group(1)
 
             # 도서 상세 정보
-            book_detail_info = book_detail(book_id)
+            book_detail_info = get_book_detail(book_id)
             # 도서 위치 및 대출 여부
-            locations = book_location_crawling(book_id, book_detail_info)
+            locations = get_book_location(book_id, book_detail_info)
 
             # 도서 위치 string으로 변환
             books_status = ''
@@ -134,7 +134,6 @@ def books_crawler(keyword):
             # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
 
             books = books + book_title + "\n" + book_info + "\n" + books_status + "---------" + "\n"
-
             return books, response.url
 
     if not body:
@@ -150,7 +149,7 @@ def search_book_title(search):
     :return:
     """
     keyword = 'TITL:' + search
-    return books_crawler(keyword)
+    return get_book_lists(keyword)
 
 
 def search_book_detail(search):
@@ -171,7 +170,7 @@ def search_book_detail(search):
     if search_list[2] is not '':
         keyword = keyword + "|" + "AUTH:" + search_list[2]
 
-    return books_crawler(keyword)
+    return get_book_lists(keyword)
 
 
 def search_book(keyword):
@@ -185,5 +184,5 @@ def search_book(keyword):
 # # TITL,PUBN,AUTH
 # result = search_book('컴퓨터구조론,생능,')
 # print(result)
-# book_detail(1578922)
+# get_book_detail(1578922)
 # book_location(1578922)
