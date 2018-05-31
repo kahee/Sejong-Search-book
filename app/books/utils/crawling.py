@@ -134,7 +134,8 @@ def get_book_lists(keyword):
             # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
 
             books = books + book_title + "\n" + book_info + "\n" + books_status + "---------" + "\n"
-            return books, response.url
+
+        return books, response.url
 
     if not body:
         books = '검색하신 결과가 없습니다.'
