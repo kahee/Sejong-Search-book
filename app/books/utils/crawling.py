@@ -30,10 +30,13 @@ def get_book_detail(book_id):
     response = requests.get(url, params)
     soup = BeautifulSoup(response.text, 'lxml')
     contents = soup.find('div', class_='contents')
+
     metaDataBody = contents.find('tbody', id='metaDataBody').find_all('td')
     items = [item.get_text(strip=True).replace(' :', '') for item in metaDataBody]
     td = iter(items)
     book_info_dict = dict(zip(td, td))
+
+    # book상세 정보 DB에 저장
     book_info, _ = Book.objects.get_or_create(
         book_id=book_id,
         book_type=book_info_dict.get('자료유형', ' '),
@@ -50,7 +53,7 @@ def get_book_detail(book_id):
 def get_book_location(book_id, book_info):
     """
     도서 위치 및 대출 정보를 크롤링하는 함수
-    :param book_id:
+    :param book_id, book_info = 해당 boook_id를 가진 Book모델 객체
     :return: 서가위치, 도서번호, 대출여부
     """
     post_format = {
@@ -60,27 +63,34 @@ def get_book_location(book_id, book_info):
     r = requests.post('http://library.sejong.ac.kr/search/ItemDetailSimple.axa', data=post_format)
     test = BeautifulSoup(r.content, 'html.parser')
     tbody = test.find('tbody').find_all('tr')
-    books_list = list()
 
+    # book_list = '제2자료실(6층), 811.4 이19말 c.3, 대출중' 정보들을 가진 리스트
+    books_list = list()
     for item in tbody:
         td = item.find_all('td')
+
+        # location_list = ['000000911692', '제2자료실(6층)', '811.4 이19말', '대출가능']
+        # book = ['제2자료실(6층)', '811.4 이19말', '대출가능']
+        # book_info = Book 모델 객체 (해당 book_id를 가진 모델)
         book = list()
         location_list = list()
         for num, td_item in enumerate(td):
             if num is 0:
+                # ['000000572988']
                 location_list.append(td_item.get_text(strip=True))
             if num in range(1, 4):
                 location_list.append(td_item.get_text(strip=True))
                 book.append(td_item.get_text(strip=True))
 
+        # BookLocation 모델 생성
         book_location, _ = BookLocation.objects.get_or_create(
             register_id=location_list[0],
             location=location_list[1],
             book_code=location_list[2],
         )
-
         book_info.book_location = book_location
         book_info.save()
+
         books_list.append(book)
 
     return books_list
@@ -103,10 +113,10 @@ def get_book_lists(keyword):
     response = requests.get(url, params)
     soup = BeautifulSoup(response.text, 'lxml')
     body = soup.find('ul', class_='listType01').find_all('div', class_='body')
+
     books = ''
-
     if body:
-
+        # 검색한 키워드의 결과가 있는 경우
         for book in body:
             book_numbers = book.find('a', class_='title', href=True)['href']
             p = re.compile(r'javascript:search.goDetail[(](\d+)[)]')
@@ -116,7 +126,6 @@ def get_book_lists(keyword):
             book_detail_info = get_book_detail(book_id)
             # 도서 위치 및 대출 여부
             locations = get_book_location(book_id, book_detail_info)
-
             # 도서 위치 string으로 변환
             books_status = ''
             for items in locations:
@@ -134,9 +143,9 @@ def get_book_lists(keyword):
             # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
 
             books = books + book_title + "\n" + book_info + "\n" + books_status + "---------" + "\n"
-
         return books, response.url
 
+    # 검색한 키워드 결과가 없는 경우
     if not body:
         books = '검색하신 결과가 없습니다.'
         url = None
