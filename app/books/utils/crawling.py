@@ -31,8 +31,8 @@ def get_book_detail(book_id):
     soup = BeautifulSoup(response.text, 'lxml')
     contents = soup.find('div', class_='contents')
 
-    metaDataBody = contents.find('tbody', id='metaDataBody').find_all('td')
-    items = [item.get_text(strip=True).replace(' :', '') for item in metaDataBody]
+    meta_data_body = contents.find('tbody', id='metaDataBody').find_all('td')
+    items = [item.get_text(strip=True).replace(' :', '') for item in meta_data_body]
     td = iter(items)
     book_info_dict = dict(zip(td, td))
 
@@ -53,8 +53,13 @@ def get_book_detail(book_id):
 def get_book_location(book_id, book_info):
     """
     도서 위치 및 대출 정보를 크롤링하는 함수
-    :param book_id, book_info = 해당 boook_id를 가진 Book모델 객체
+    book_info = 해당 boook_id를 가진 Book모델 객체
+    :param book_id:
+    :param book_info:
     :return: 서가위치, 도서번호, 대출여부
+    """
+    """
+    
     """
     post_format = {
         'cid': book_id,
@@ -133,14 +138,14 @@ def get_book_lists(keyword):
                 if num == 1:
                     book_title = item.get_text(strip=True)
                 if num == 4:
-                    book_info = item.strip()
-            book_info = re.sub(r'/', '', book_info)
+                    book_info_result = item.strip()
+            book_info_result = re.sub(r'/', '', book_info_result)
 
             # book_status = book.find('p', class_='tag').get_text(strip=True)
             # book_status = re.sub(r'\t', '', book_status)
             # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
 
-            books = books + book_title + "\n" + book_info + "\n" + books_status + "---------" + "\n"
+            books = books + book_title + "\n" + book_info_result + "\n" + books_status + "---------" + "\n"
         return books, response.url
 
     # 검색한 키워드 결과가 없는 경우

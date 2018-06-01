@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 
+
 class UserKeyword(models.Model):
     keyword = models.CharField(
         verbose_name='검색키워드',
