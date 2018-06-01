@@ -45,6 +45,7 @@ def message(request):
         if not url:
             wrong_keyword, _ = UserKeyword.objects.get_or_create(
                 wrong_keyword=content,
+                user=user,
             )
             user.keyword = wrong_keyword
             user.save()
@@ -57,6 +58,7 @@ def message(request):
             # 검색한 키워드가 있는 경우 user키워드에 저장
             keyword, _ = UserKeyword.objects.get_or_create(
                 keyword=content,
+                user=user,
             )
             user.keyword = keyword
             user.save()

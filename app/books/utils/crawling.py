@@ -87,10 +87,8 @@ def get_book_location(book_id, book_info):
             register_id=location_list[0],
             location=location_list[1],
             book_code=location_list[2],
+            book=book_info,
         )
-        book_info.book_location = book_location
-        book_info.save()
-
         books_list.append(book)
 
     return books_list

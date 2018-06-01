@@ -1,7 +1,5 @@
 from django.db import models
 
-from . import BookLocation
-
 
 class Book(models.Model):
     """
@@ -41,9 +39,4 @@ class Book(models.Model):
         max_length=255,
         blank=True,
     )
-    book_location = models.ForeignKey(
-        BookLocation,
-        on_delete=models.CASCADE,
-        related_name='book_location_list',
-        null=True,
-    )
+

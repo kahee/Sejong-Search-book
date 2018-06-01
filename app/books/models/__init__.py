@@ -1,2 +1,3 @@
-from .location import *
 from .book import *
+from .location import *
+
