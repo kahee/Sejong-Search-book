@@ -147,7 +147,7 @@ def get_book_lists(keyword):
 
     # 검색한 키워드 결과가 없는 경우
     if not body:
-        books = '검색하신 결과가 없습니다. 사용법을 알고 싶으시면 "사용법"을 입력해주세요'
+        books = '검색하신 결과가 없습니다. \n 사용법을 알고 싶으시면 "사용법"을 입력해주세요'
         url = None
         return books, url
 
