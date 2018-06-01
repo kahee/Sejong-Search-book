@@ -41,11 +41,6 @@ def message(request):
         user, _ = User.objects.get_or_create(
             username=user_key
         )
-        keyword, _ = UserKeyword.objects.get_or_create(
-            keyword=content,
-        )
-        user.keyword = keyword
-        user.save()
 
         if not url:
             return JsonResponse({
@@ -53,13 +48,18 @@ def message(request):
                     'text': books,
                 },
             })
-
-        return JsonResponse({
-            'message': {
-                'text': books,
-                "message_button": {
-                    'label': '자세한 검색 결과 보기',
-                    'url': url,
-                }
-            },
-        })
+        else:
+            keyword, _ = UserKeyword.objects.get_or_create(
+                keyword=content,
+            )
+            user.keyword = keyword
+            user.save()
+            return JsonResponse({
+                'message': {
+                    'text': books,
+                    "message_button": {
+                        'label': '자세한 검색 결과 보기',
+                        'url': url,
+                    }
+                },
+            })
