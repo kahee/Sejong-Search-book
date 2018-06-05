@@ -71,3 +71,22 @@ def message(request):
                     }
                 },
             })
+
+
+@csrf_exempt
+def plus_friend(request):
+    if request.method == 'POST':
+        request.JSON = json.loads(request.body.decode('utf-8'))
+        user_key = request.JSON.get('user_key', '')
+        if user_key:
+            user, _ = User.objects.get_or_create(
+                username=user_key
+            )
+        return JsonResponse({})
+
+@csrf_exempt
+def delete_friend(request, user_key):
+    if request.method == 'DELETE':
+        print(f'{user_key}님이 친구삭제를 하셨습니다.')
+
+        return JsonResponse({})
