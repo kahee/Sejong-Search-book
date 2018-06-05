@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 class UserKeyword(models.Model):
@@ -15,7 +16,6 @@ class UserKeyword(models.Model):
         blank=True,
         null=True,
     )
-
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -23,3 +23,6 @@ class UserKeyword(models.Model):
         blank=True,
         null=True,
     )
+    creation_datetime = models.DateTimeField('생성시간', default=timezone.now)
+
+
