@@ -78,5 +78,5 @@ def search_book(search):
 # 사용자가 입력하는 경우 '제목,출판사,저자'
 # TITL,PUBN,AUTH
 
-result = search_book('베르나르 베르베')
-print(result)
+# result = search_book('베르나르 베르베')
+# print(result)
