@@ -31,3 +31,4 @@ def message(request):
             'text': books,
         },
     })
+
