@@ -9,4 +9,5 @@ django-storages==1.6.5
 lxml==4.2.1
 Pillow<6.0.0
 psycopg2-binary==2.7.4
-requests==2.9.1
+requests<2.19
+
