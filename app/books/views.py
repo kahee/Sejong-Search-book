@@ -1,7 +1,7 @@
 import json
 
 from django.contrib.auth import get_user_model
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
@@ -11,6 +11,10 @@ from .utils import HELP_TEXT
 from .utils.crawling import search_book
 
 User = get_user_model()
+
+
+def index(request):
+    return HttpResponse("Wellcome")
 
 
 def keyboard(request):
@@ -83,6 +87,7 @@ def plus_friend(request):
                 username=user_key
             )
         return JsonResponse({})
+
 
 @csrf_exempt
 def delete_friend(request, user_key):

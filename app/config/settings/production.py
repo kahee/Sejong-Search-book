@@ -1,4 +1,5 @@
 from .base import *
+
 import_secrets()
 
 DEBUG = False
@@ -22,7 +23,6 @@ INSTALLED_APPS += [
 DEFAULT_FILE_STORAGE = 'config.storage.DefaultFilesStorage'
 # # Static files(collectstatic) 을 위한 스토리지
 STATICFILES_STORAGE = 'config.storage.StaticFilesStorage'
-
 
 
 def is_ec2_linux():

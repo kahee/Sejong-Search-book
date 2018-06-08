@@ -2,6 +2,7 @@ from django.urls import path
 from books import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('keyboard/', views.keyboard, name='keyboard'),
     path('message', views.message, name='message'),
     path('friend', views.plus_friend, name='plus-friend'),
