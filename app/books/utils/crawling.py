@@ -69,7 +69,7 @@ def get_book_location(book_id, book_info):
     test = BeautifulSoup(r.content, 'html.parser')
     tbody = test.find('tbody').find_all('tr')
 
-    # book_list = '제2자료실(6층), 811.4 이19말 c.3, 대출중' 정보들을 가진 리스트
+    # book_list = ['제1자료실(5층)', '658.31125 한17공3', '대출가능'] 정보 가진 리스트
     books_list = list()
     for item in tbody:
         td = item.find_all('td')
@@ -128,29 +128,31 @@ def get_book_lists(keyword):
             # 도서 상세 정보
             book_detail_info = get_book_detail(book_id)
             # 도서 위치 및 대출 여부
+            # locations = ['제1자료실(5층)', '658.31125 한17공3', '대출가능']
             locations = get_book_location(book_id, book_detail_info)
-            # 도서 위치 string으로 변환
+
             books_status = ''
             for items in locations:
+                # 도서 위치 string으로 변환
+                # books_status = 보존서고10층A(9층문의), 658.01 공19ㅅ, 대출불가
                 books_status = books_status + ', '.join(str(item) for item in items) + '\n'
 
             for num, item in enumerate(book.contents):
+                # 책 제목
                 if num == 1:
                     book_title = item.get_text(strip=True)
+                # 책 저자/출판정보
                 if num == 4:
+                    # book_info_result = / 송대희. 한국개발연구원 , 1987.
                     book_info_result = item.strip()
             book_info_result = re.sub(r'/', '', book_info_result)
-
-            # book_status = book.find('p', class_='tag').get_text(strip=True)
-            # book_status = re.sub(r'\t', '', book_status)
-            # book_status = re.sub(r'세종대학교 학술정보원', '', book_status)
 
             books = books + book_title + "\n" + book_info_result + "\n" + books_status + "---------" + "\n"
         return books, response.url
 
     # 검색한 키워드 결과가 없는 경우
     if not body:
-        books = '검색하신 결과가 없습니다. \n 사용법을 알고 싶으시면 "사용법"을 입력해주세요'
+        books = '검색하신 결과가 없습니다.\n 사용법을 알고 싶으시면 "사용법"을 입력해주세요'
         url = None
         return books, url
 
