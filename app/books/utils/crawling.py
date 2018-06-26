@@ -37,20 +37,22 @@ def get_book_detail(book_id):
     book_info_dict = dict(zip(td, td))
 
     # book상세 정보 DB에 저장
-    book_info, _ = Book.objects.get_or_create(
+    book_info, _ = Book.objects.update_or_create(
         book_id=book_id,
-        book_type=book_info_dict.get('자료유형', ' '),
-        book_author=book_info_dict.get('서명 / 저자', ' '),
-        book_personnel_author=book_info_dict.get('개인저자', ' '),
-        book_issue=book_info_dict.get('발행사항', ' '),
-        book_form=book_info_dict.get('형태사항', ' '),
-        ISBN=book_info_dict.get('ISBN', ' '),
+        defaults={
+            "book_type": book_info_dict.get('자료유형', ' '),
+            "book_author": book_info_dict.get('서명 / 저자', ' '),
+            "book_personnel_author": book_info_dict.get('개인저자', ' '),
+            "book_issue": book_info_dict.get('발행사항', ' '),
+            "book_form": book_info_dict.get('형태사항', ' '),
+            "ISBN": book_info_dict.get('ISBN', ' '),
+        }
     )
 
     return book_info
 
 
-def get_book_location(book_id, book_info):
+def get_book_location(book_id, book_info=None):
     """
     도서 위치 및 대출 정보를 크롤링하는 함수
     book_info = 해당 boook_id를 가진 Book모델 객체
@@ -88,11 +90,14 @@ def get_book_location(book_id, book_info):
                 book.append(td_item.get_text(strip=True))
 
         # BookLocation 모델 생성
-        book_location, _ = BookLocation.objects.get_or_create(
+        print('실행')
+        book_location, _ = BookLocation.objects.update_or_create(
             register_id=location_list[0],
-            location=location_list[1],
-            book_code=location_list[2],
-            book=book_info,
+            defaults={
+                'location': location_list[1],
+                'book_code': location_list[2],
+                'book': Book.objects.get(book_id=book_id),
+            }
         )
         books_list.append(book)
 
@@ -125,11 +130,16 @@ def get_book_lists(keyword):
             p = re.compile(r'javascript:search.goDetail[(](\d+)[)]')
             book_id = p.search(book_numbers).group(1)
 
+            book_instance, _ = Book.objects.get_or_create(
+                book_id=book_id,
+            )
+
             # 도서 상세 정보
-            book_detail_info = get_book_detail(book_id)
+            # book_detail_info = get_book_detail(book_id)
+
             # 도서 위치 및 대출 여부
             # locations = ['제1자료실(5층)', '658.31125 한17공3', '대출가능']
-            locations = get_book_location(book_id, book_detail_info)
+            locations = get_book_location(book_id)
 
             books_status = ''
             for items in locations:
