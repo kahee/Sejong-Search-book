@@ -4,12 +4,14 @@ MAINTAINER yuygh131@gmail.com
 
 RUN             apt-get -y update
 RUN             apt-get -y dist-upgrade
-RUN             apt-get -y install nginx supervisor build-essential
+RUN             apt-get update && apt-get -y install nginx supervisor build-essential redis-server
+EXPOSE          6379
 
 COPY            .requirements /srv/.requirements
 
 WORKDIR         /srv
 RUN             pip install -r /srv/.requirements/dev.txt
+
 
 COPY            . /srv/project
 
@@ -20,7 +22,7 @@ RUN        cp -f    /srv/project/.config/local/nginx.conf          /etc/nginx/ng
            ln -sf   /etc/nginx/sites-available/nginx-app.conf      /etc/nginx/sites-enabled/
 
 RUN        cp -f /srv/project/.config/local/supervisord.conf       /etc/supervisor/conf.d/
-
+RUN        mkdir /var/log/celery
 WORKDIR    /srv/project/app
-RUN        python manage.py migrate && python manage.py createsu
-CMD        pkill nginx; supervisord -n
+
+#CMD        pkill nginx; supervisord -n

@@ -1,0 +1,44 @@
+version: '3'
+
+volumes:
+  django_sample_db_dev: {}
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - django_sample_db_dev:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=sampledb
+      - POSTGRES_USER=sampleuser
+      - POSTGRES_PASSWORD=samplesecret
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      - DJANGO_DEBUG=True
+      - DJANGO_DB_HOST=postgres
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DB_NAME=sampledb
+      - DJANGO_DB_USERNAME=sampleuser
+      - DJANGO_DB_PASSWORD=samplesecret
+      - DJANGO_SECRET_KEY=dev_secret_key
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db:postgres
+    tty: true
+    command:
+      - bash
+      - -c
+      - |
+        python /srv/project/app/manage.py migrate
+        python /srv/project/app/manage.py createsu
+        pkill nginx; supervisord -n
+        redis-server
+    volumes:
+      - ./app/:/srv/project/app/
