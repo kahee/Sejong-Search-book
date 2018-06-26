@@ -1,10 +1,13 @@
+amqp==2.3.2
 awsebcli==3.14.0
 backcall==0.1.0
 beautifulsoup4==4.6.0
+billiard==3.5.0.3
 blessed==1.14.2
 boto3==1.7.13
 botocore==1.10.13
 cached-property==1.4.2
+celery==4.2.0
 cement==2.8.2
 certifi==2018.4.16
 chardet==3.0.4
@@ -28,6 +31,7 @@ ipython-genutils==0.2.0
 jedi==0.12.0
 jmespath==0.9.3
 jsonschema==2.6.0
+kombu==4.2.1
 lxml==4.2.1
 parso==0.2.0
 pathspec==0.5.5
@@ -54,5 +58,6 @@ texttable==0.9.1
 traitlets==4.3.2
 urllib3==1.22
 uWSGI==2.0.17
+vine==1.1.4
 wcwidth==0.1.7
 websocket-client==0.47.0
