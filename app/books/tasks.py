@@ -2,8 +2,14 @@ import time
 
 from .models import BookLocation, Book
 from .utils import get_book_detail
+
 from config.celery import app
 
+
+__all__ = (
+    'book_detail_save',
+    'book_location_save',
+)
 
 # @app.task(bind=True)
 # def book_detail_save(self):
