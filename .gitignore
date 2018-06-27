@@ -4,7 +4,7 @@ ted by https://www.gitignore.io/api/git,linux,macos,django,python,pycharm+all
 /.static
 /.secrets
 .secrets
-
+*.rdb
 
 ### Django ###
 *.log
