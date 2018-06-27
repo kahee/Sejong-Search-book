@@ -3,7 +3,7 @@ MAINTAINER      ygh131test@gmail.com
 
 RUN             apt-get -y update
 RUN             apt-get -y dist-upgrade
-RUN             apt-get -y install nginx supervisor build-essential
+RUN             apt-get -y install nginx supervisor build-essential redis-server
 
 COPY            .requirements /srv/.requirements
 
@@ -22,6 +22,7 @@ RUN             rm -f /etc/nginx/sites-enabled/*
 RUN             ln -sf /etc/nginx/sites-available/nginx-app.conf /etc/nginx/sites-enabled/
 
 RUN             cp -f /srv/project/.config/${BUILD_MODE}/supervisord.conf /etc/supervisor/conf.d/
-
+RUN             mkdir /var/log/celery
+WORKDIR         /srv/project/app
 
 CMD             pkill nginx; supervisord -n
