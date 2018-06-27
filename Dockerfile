@@ -12,6 +12,7 @@ RUN         cp -f   /srv/project/.config/${BUILD_MODE}/nginx.conf       /etc/ngi
             ln -sf  /etc/nginx/sites-available/nginx-app.conf   /etc/nginx/sites-enabled/
 
 RUN         cp -f   /srv/project/.config/${BUILD_MODE}/supervisord.conf /etc/supervisor/conf.d/
+
 RUN         mkdir /var/log/celery
 WORKDIR    /srv/project/app
 

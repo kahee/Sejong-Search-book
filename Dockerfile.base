@@ -6,7 +6,7 @@ ENV         LANG    C.UTF-8
 #apt-get으로 nginx, supervisor 설치
 RUN         apt-get -y update
 RUN         apt-get -y dist-upgrade
-RUN         apt-get -y install build-essential nginx supervisor
+RUN         apt-get update && apt-get -y install build-essential nginx supervisor redis-server
 
 #requirements만 복사
 COPY        .requirements /srv/.requirements

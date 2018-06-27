@@ -3,7 +3,7 @@ MAINTAINER      ygh131test@gmail.com
 
 RUN             apt-get -y update
 RUN             apt-get -y dist-upgrade
-RUN             apt-get -y install nginx supervisor build-essential
+RUN             apt-get -y install nginx supervisor build-essential redis-server
 
 COPY            .requirements /srv/.requirements
 

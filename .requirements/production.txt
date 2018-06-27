@@ -1,5 +1,4 @@
 raven<6.7
-
 beautifulsoup4<=4.6.0
 boto3<1.7
 celery==4.2.0
