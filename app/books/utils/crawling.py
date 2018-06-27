@@ -2,6 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+from books import tasks
 from books.models import BookLocation
 from ..models import Book
 
@@ -90,15 +91,20 @@ def get_book_location(book_id, book_info=None):
                 book.append(td_item.get_text(strip=True))
 
         # BookLocation 모델 생성
-        print('실행')
-        book_location, _ = BookLocation.objects.update_or_create(
-            register_id=location_list[0],
-            defaults={
-                'location': location_list[1],
-                'book_code': location_list[2],
-                'book': Book.objects.get(book_id=book_id),
-            }
-        )
+        register_id = location_list[0]
+        location = location_list[1]
+        book_code = location_list[2]
+        tasks.book_location_save.delay(book_id, register_id, location, book_code)
+
+        # book_location, _ = BookLocation.objects.update_or_create(
+        #     register_id=location_list[0],
+        #     defaults={
+        #         'location': location_list[1],
+        #         'book_code': location_list[2],
+        #         'book': Book.objects.get(book_id=book_id),
+        #     }
+        # )
+
         books_list.append(book)
 
     return books_list
@@ -134,8 +140,8 @@ def get_book_lists(keyword):
                 book_id=book_id,
             )
 
-            # 도서 상세 정보
-            # book_detail_info = get_book_detail(book_id)
+            # 도서 상세 정보 저장 -> celery 로 실행
+            tasks.book_detail_save.delay(book_id)
 
             # 도서 위치 및 대출 여부
             # locations = ['제1자료실(5층)', '658.31125 한17공3', '대출가능']
