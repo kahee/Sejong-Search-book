@@ -19,7 +19,7 @@ def index(request):
 
 def keyboard(request):
     return JsonResponse({
-        'type': 'buttons',
+        'type': 'text',
         'buttons': ['사용법', ]
     })
 
