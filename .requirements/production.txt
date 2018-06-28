@@ -11,3 +11,4 @@ Pillow<6.0.0
 psycopg2-binary==2.7.4
 requests<2.19
 redis==2.10.6
+uWSGI==2.0.17
