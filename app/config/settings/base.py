@@ -19,6 +19,7 @@ from djs import import_secrets
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
+
 SECRETS_MODULES = {
     # Module's full path stri1ng
     'raven': 'raven',
@@ -26,7 +27,11 @@ SECRETS_MODULES = {
     'requests': requests,
 }
 
+# SECRAET
 SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
+SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
+secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
+AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
 import_secrets()
 
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')

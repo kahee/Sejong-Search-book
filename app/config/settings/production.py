@@ -1,7 +1,6 @@
 from .base import *
 
 import_secrets()
-
 DEBUG = False
 ALLOWED_HOSTS = [
     '.zoejoy.kr',
@@ -19,9 +18,10 @@ INSTALLED_APPS += [
     'storages',
 ]
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-
+CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
+CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 # Media(user-uploaded file)을 위한 스토리지
 DEFAULT_FILE_STORAGE = 'config.storage.DefaultFilesStorage'
 # # Static files(collectstatic) 을 위한 스토리지
