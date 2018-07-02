@@ -32,9 +32,8 @@ class Book(models.Model):
         max_length=255,
         blank=True,
     )
-    ISBN = models.CharField(
+    ISBN = models.TextField(
         verbose_name='ISBN',
-        max_length=255,
         blank=True,
     )
 
