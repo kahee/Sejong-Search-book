@@ -144,6 +144,8 @@ def get_book_lists(keyword):
             from books import tasks
             tasks.book_detail_save.delay(book_id)
 
+            # get_book_detail(book_id)
+
             # 도서 위치 및 대출 여부
             # locations = ['제1자료실(5층)', '658.31125 한17공3', '대출가능']
             locations = get_book_location(book_id)

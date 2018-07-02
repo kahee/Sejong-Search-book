@@ -19,14 +19,12 @@ class Book(models.Model):
         max_length=255,
         blank=True,
     )
-    book_personnel_author = models.CharField(
+    book_personnel_author = models.TextField(
         verbose_name='개인저자',
-        max_length=255,
         blank=True,
     )
-    book_issue = models.CharField(
+    book_issue = models.TextField(
         verbose_name='발행사항',
-        max_length=255,
         blank=True,
     )
     book_form = models.CharField(
