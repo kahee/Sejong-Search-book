@@ -7,7 +7,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from members.models import UserKeyword
-from .utils import HELP_TEXT
+from .utils import HELP_TEXT, BUG_TEXT
 from .utils.crawling import search_book
 
 User = get_user_model()
@@ -37,6 +37,13 @@ def message(request):
             },
         })
 
+    if content == '구토':
+        return JsonResponse({
+            'message': {
+                'text': BUG_TEXT,
+            },
+        })
+
     else:
         user_key = return_json_str['user_key']
         books, url = search_book(content)
@@ -53,6 +60,7 @@ def message(request):
             )
             user.keyword = wrong_keyword
             user.save()
+            print(books)
             return JsonResponse({
                 'message': {
                     'text': books,

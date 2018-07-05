@@ -32,7 +32,7 @@ def book_detail_save(book_id):
 @app.task()
 def book_location_save(book_id, register_id, location, book_code):
     time.sleep(3)
-    book_location, _ = BookLocation.objects.update_or_create(
+    book_location, _ = BookLocation.objects.get_or_create(
         register_id=register_id,
         defaults={
             'location': location,
