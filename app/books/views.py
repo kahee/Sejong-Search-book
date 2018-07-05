@@ -37,12 +37,12 @@ def message(request):
             },
         })
 
-    if content == '구토':
-        return JsonResponse({
-            'message': {
-                'text': BUG_TEXT,
-            },
-        })
+    # if content == '구토':
+    #     return JsonResponse({
+    #         'message': {
+    #             'text': BUG_TEXT,
+    #         },
+    #     })
 
     else:
         user_key = return_json_str['user_key']

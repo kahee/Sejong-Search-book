@@ -142,6 +142,7 @@ def get_book_lists(keyword):
 
             # 도서 상세 정보 저장 -> celery 로 실행
             from books import tasks
+            print('delay시작')
             tasks.book_detail_save.delay(book_id)
 
             # get_book_detail(book_id)
