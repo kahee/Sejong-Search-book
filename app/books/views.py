@@ -37,24 +37,21 @@ def message(request):
             },
         })
 
-    # if content == '구토':
-    #     return JsonResponse({
-    #         'message': {
-    #             'text': BUG_TEXT,
-    #         },
-    #     })
-
     else:
 
         user_key = return_json_str['user_key']
         print(user_key)
-        books, url = search_book(content)
+
+        # 키워드가 구토인경우 특정 출판사만 출력
+        if content == '구토':
+            books, url = search_book('구토,문예출판사,')
+        else:
+            books, url = search_book(content)
 
         # 사용법입력이 아닌 경우에만 user_key와 검색어 User 모델에 저장
         user, _ = User.objects.get_or_create(
             username=user_key
         )
-        print(books)
 
         if not url:
             wrong_keyword, _ = UserKeyword.objects.get_or_create(
@@ -76,7 +73,6 @@ def message(request):
             )
             user.keyword = keyword
             user.save()
-            print(books)
             return JsonResponse({
                 'message': {
                     'text': books,
