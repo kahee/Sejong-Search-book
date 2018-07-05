@@ -55,6 +55,7 @@ def message(request):
             username=user_key
         )
         print(books)
+
         if not url:
             wrong_keyword, _ = UserKeyword.objects.get_or_create(
                 wrong_keyword=content,
@@ -75,6 +76,7 @@ def message(request):
             )
             user.keyword = keyword
             user.save()
+            print(books)
             return JsonResponse({
                 'message': {
                     'text': books,
