@@ -45,14 +45,16 @@ def message(request):
     #     })
 
     else:
+
         user_key = return_json_str['user_key']
+        print(user_key)
         books, url = search_book(content)
 
         # 사용법입력이 아닌 경우에만 user_key와 검색어 User 모델에 저장
         user, _ = User.objects.get_or_create(
             username=user_key
         )
-
+        print(books)
         if not url:
             wrong_keyword, _ = UserKeyword.objects.get_or_create(
                 wrong_keyword=content,
@@ -60,7 +62,6 @@ def message(request):
             )
             user.keyword = wrong_keyword
             user.save()
-            print(books)
             return JsonResponse({
                 'message': {
                     'text': books,
