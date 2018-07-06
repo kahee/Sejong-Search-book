@@ -23,6 +23,10 @@ class UserKeyword(models.Model):
         blank=True,
         null=True,
     )
-    creation_datetime = models.DateTimeField('생성시간', default=timezone.now)
+    creation_datetime = models.DateTimeField('생성시간', auto_now=True)
 
+    def __str__(self):
+        return self.keyword
 
+    class Meta:
+        ordering = ['-creation_datetime']

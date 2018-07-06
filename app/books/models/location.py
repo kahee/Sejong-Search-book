@@ -24,3 +24,6 @@ class BookLocation(models.Model):
         related_name='book_location_list',
         null=True,
     )
+
+    def __str__(self):
+        return self.register_id

@@ -1,5 +1,7 @@
 from django.db import models
 
+from members.models import UserKeyword
+
 
 class Book(models.Model):
     """
@@ -37,3 +39,5 @@ class Book(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return f'{self.book_id}'
