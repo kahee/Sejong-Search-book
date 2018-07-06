@@ -27,3 +27,6 @@ class UserKeyword(models.Model):
 
     def __str__(self):
         return self.keyword
+
+    class Meta:
+        ordering = ['-creation_datetime']
