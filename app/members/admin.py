@@ -41,7 +41,7 @@ class UserAdmin(BaseUserAdmin):
 
 class UserKeywordAdmin(admin.ModelAdmin):
     readonly_fields = ('creation_datetime',)
-    list_display = ('user', 'keyword',)
+    list_display = ('user', 'keyword', 'wrong_keyword',)
 
 
 admin.site.register(User, UserAdmin)

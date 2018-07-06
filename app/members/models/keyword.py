@@ -26,6 +26,8 @@ class UserKeyword(models.Model):
     creation_datetime = models.DateTimeField('생성시간', auto_now=True)
 
     def __str__(self):
+        if not self.keyword:
+            return self.wrong_keyword
         return self.keyword
 
     class Meta:
