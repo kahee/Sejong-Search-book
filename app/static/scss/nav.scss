@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Nanum+Gothic');
+
+$font-stack: 'Nanum Gothic', sans-serif;
+$font-title:'Do Hyeon', sans-serif;
+$bagic-color:rgb(255, 225, 3);
+
+html,body {
+  font-family: $font-stack;
+  font-size: 14px;
+}
+
+#mainNav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  font-family: $font-stack;
+}
+
+header.bagic {
+
+  background: $bagic-color;
+  padding:20px 20px;
+  text-align: center;
+  font-size: 1.2em;
+  p,h2 {
+    margin: 0;
+    padding: 0;
+  }
+  h2{
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+}
+.exted-img {
+  
+}
+
+.inner-img {
+
+}
+
+.back-color {
+  background-color: #f8f8f8;
+}
+.div-padding {
+  padding-top: 40px;
+}
+.div-margin {
+  margin: 20px 0;
+}
+.test-back {
+  background: grey;
+}
