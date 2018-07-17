@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.http import JsonResponse, HttpResponse
 
 # Create your views here.
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from members.models import UserKeyword
@@ -14,7 +15,7 @@ User = get_user_model()
 
 
 def index(request):
-    return HttpResponse("Wellcome")
+    return render(request, 'index.html')
 
 
 def keyboard(request):

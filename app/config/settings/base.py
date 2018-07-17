@@ -34,8 +34,12 @@ secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
 AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
 import_secrets()
 
-STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
+
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
