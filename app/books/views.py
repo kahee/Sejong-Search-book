@@ -26,62 +26,63 @@ def keyboard(request):
 
 @csrf_exempt
 def message(request):
-    message = ((request.body).decode('utf-8'))
-    return_json_str = json.loads(message)
-    content = return_json_str['content']
+    if request.method == 'POST':
+        message = (request.body.decode('utf-8'))
+        return_json_str = json.loads(message)
+        content = return_json_str['content']
 
-    if content == '사용법':
-        return JsonResponse({
-            'message': {
-                'text': HELP_TEXT,
-            },
-        })
-
-    else:
-
-        user_key = return_json_str['user_key']
-        print(user_key)
-
-        # 키워드가 구토인경우 특정 출판사만 출력
-        if content == '구토':
-            books, url = search_book('구토,문예출판사,')
-        else:
-            books, url = search_book(content)
-
-        # 사용법입력이 아닌 경우에만 user_key와 검색어 User 모델에 저장
-        user, _ = User.objects.get_or_create(
-            username=user_key
-        )
-
-        if not url:
-            wrong_keyword, _ = UserKeyword.objects.update_or_create(
-                wrong_keyword=content,
-                user=user,
-            )
-            user.keyword = wrong_keyword
-            user.save()
+        if content == '사용법':
             return JsonResponse({
                 'message': {
-                    'text': books,
+                    'text': HELP_TEXT,
                 },
             })
+
         else:
-            # 검색한 키워드가 있는 경우 user키워드에 저장
-            keyword, _ = UserKeyword.objects.update_or_create(
-                keyword=content,
-                user=user,
+
+            user_key = return_json_str['user_key']
+            print(user_key)
+
+            # 키워드가 구토인경우 특정 출판사만 출력
+            if content == '구토':
+                books, url = search_book('구토,문예출판사,')
+            else:
+                books, url = search_book(content)
+
+            # 사용법입력이 아닌 경우에만 user_key와 검색어 User 모델에 저장
+            user, _ = User.objects.get_or_create(
+                username=user_key
             )
-            user.keyword = keyword
-            user.save()
-            return JsonResponse({
-                'message': {
-                    'text': books,
-                    "message_button": {
-                        'label': '자세한 검색 결과 보기',
-                        'url': url,
-                    }
-                },
-            })
+
+            if not url:
+                wrong_keyword, _ = UserKeyword.objects.update_or_create(
+                    wrong_keyword=content,
+                    user=user,
+                )
+                user.keyword = wrong_keyword
+                user.save()
+                return JsonResponse({
+                    'message': {
+                        'text': books,
+                    },
+                })
+            else:
+                # 검색한 키워드가 있는 경우 user키워드에 저장
+                keyword, _ = UserKeyword.objects.update_or_create(
+                    keyword=content,
+                    user=user,
+                )
+                user.keyword = keyword
+                user.save()
+                return JsonResponse({
+                    'message': {
+                        'text': books,
+                        "message_button": {
+                            'label': '자세한 검색 결과 보기',
+                            'url': url,
+                        }
+                    },
+                })
 
 
 @csrf_exempt
