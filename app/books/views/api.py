@@ -1,20 +1,23 @@
 import json
 
 from django.contrib.auth import get_user_model
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
 from members.models import UserKeyword
-from .utils import HELP_TEXT, BUG_TEXT
-from .utils.crawling import search_book
+from ..utils import HELP_TEXT, BUG_TEXT
+from ..utils.crawling import search_book
 
 User = get_user_model()
 
-
-def index(request):
-    return HttpResponse("Wellcome")
+__all__ = (
+    'keyboard',
+    'message',
+    'plus_friend',
+    'get_user_model',
+)
 
 
 def keyboard(request):

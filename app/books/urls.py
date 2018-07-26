@@ -1,10 +1,12 @@
 from django.urls import path
-from books import views
+
+from .views.api import keyboard, plus_friend, delete_friend, message
+from .views.views import index
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('keyboard/', views.keyboard, name='keyboard'),
-    path('message', views.message, name='message'),
-    path('friend', views.plus_friend, name='plus-friend'),
-    path('friend/<str:user_key>/', views.delete_friend, name='delete-firend'),
+    path('', index, name='index'),
+    path('keyboard/', keyboard, name='keyboard'),
+    path('message', message, name='message'),
+    path('friend', plus_friend, name='plus-friend'),
+    path('friend/<str:user_key>/', delete_friend, name='delete-firend'),
 ]
