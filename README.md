@@ -120,7 +120,7 @@ FROM    <사용자명>/<저장소명>:base
       "NAME": "<DB name>",
       "USER": "<DB username>",
       "PASSWORD": "<DB user password>",
-      "PORT": <Port number, default:5432>
+      "PORT": "<Port number, default:5432>"
     }
   }
 }
