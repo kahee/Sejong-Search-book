@@ -16,7 +16,7 @@ __all__ = (
     'keyboard',
     'message',
     'plus_friend',
-    'get_user_model',
+    'delete_friend',
 )
 
 

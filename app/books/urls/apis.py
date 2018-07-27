@@ -1,10 +1,9 @@
 from django.urls import path
 
-from .views.api import keyboard, plus_friend, delete_friend, message
-from .views.views import index
+from ..views.api import keyboard, plus_friend, delete_friend, message
+
 
 urlpatterns = [
-    path('', index, name='index'),
     path('keyboard/', keyboard, name='keyboard'),
     path('message', message, name='message'),
     path('friend', plus_friend, name='plus-friend'),
