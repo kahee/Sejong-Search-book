@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 __all__ = (
     'index',
@@ -6,4 +7,5 @@ __all__ = (
 
 
 def index(request):
-    return HttpResponse("Wellcome")
+    return render(request, 'index.html')
+
