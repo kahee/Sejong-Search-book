@@ -1,0 +1,42 @@
+{% load static %}
+<div class="content slide-div">
+    <!-- Swiper -->
+    <div class="swiper-container swiper-div" id="introduction">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-div-text">
+                    <div class="content-div">
+                        <div class="content-text-title">접근을 편리하게</div>
+                        <div class="context-text-context">학교 사이트에 접속하지 않고</div>
+                        <div class="context-text-context">카카오톡으로 도서검색을 해보세요.</div>
+                    </div>
+                </div>
+                <img src="{% static 'images/phone1_png.png' %}" alt="">
+            </div>
+
+            <div class="swiper-slide">
+                <div class="slide-div-text">
+                    <div class="content-div">
+                        <div class="content-text-title">검색을 편리하게</div>
+                        <div class="context-text-context">책 제목으로</div>
+                        <div class="context-text-context">원하는 도서 결과를 받아보세요.</div>
+                    </div>
+                </div>
+                <img src="{% static 'images/phone3_png.png' %}" alt="">
+            </div>
+
+            <div class="swiper-slide">
+                <div class="slide-div-text">
+                    <div class="content-div">
+                        <div class="content-text-title">검색을 자세하게</div>
+                        <div class="context-text-context">원하는 도서 정보가 없으신가요?</div>
+                        <div class="context-text-context">제목, 출판사, 저자검색을 활용해보세요.</div>
+                    </div>
+                </div>
+                <img src="{% static 'images/phone2_png.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-page-div"></div>
+</div>
