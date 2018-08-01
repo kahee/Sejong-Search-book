@@ -24,7 +24,7 @@ introTagA.addEventListener("click", function() {
 introVideoTagA.addEventListener("click", function() {
   $("nav").toggleClass("close");
   $([document.documentElement, document.body]).animate({
-    scrollTop: $('#introductionVideo').offset().top-40
+    scrollTop: $('#introductionVideo').offset().top-50
 }, 1000);
 })
 
