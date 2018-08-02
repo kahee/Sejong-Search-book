@@ -228,13 +228,13 @@ nav ul li a:hover {
 }
 
 .video-title {
-  font-size: 10px;
+  font-size: 13px;
   padding-top: 35px;
 }
 
 .video-logo {
   font-family: 'BM HANNA 11yrs old';
-  font-size: 23px;
+  font-size: 30px;
   color: black;
   margin-bottom: 25px;
 }
@@ -265,7 +265,7 @@ nav ul li a:hover {
 
 .about-me-intro .about-me-context {
   margin-top: -7px;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .about-me-index {
@@ -282,7 +282,7 @@ nav ul li a:hover {
 }
 
 .about-me-detail .about-me-context {
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .about-me-skill {
