@@ -1,22 +1,37 @@
 {% load static %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
 <div class="content" id="aboutMe">
-    <img src="{% static 'images/about_me.jpg' %}" class="uk-border-circle about-me-img" alt="">
-    <div class="about-me-title">ABOUT ME</div>
-    <div class="about-me-intro">
-        <div class="about-me-context">
-            Backend Junior Developer
-        </div>
+  <img src="{% static 'images/about_me.jpg' %}" class="uk-border-circle about-me-img" alt="">
+  <div class="about-me-intro">
+    <div class="about-me-title">KAHEE YU</div>
+    <div class="about-me-context">
+      Junior Backend Developer
     </div>
-    <div class="about-me-detail">
-        <div class="about-me-index">EDUCATION / CAREEAR</div>
-        세종대 경영학 / 컴퓨터공학 전공
+  </div>
+  <div class="about-me-detail">
+    <div class="about-me-index">EDUCATION</div>
+    <div class="about-me-context">
+      세종대 경영학 / 컴퓨터공학 전공<br>
+      패스트캠퍼스 웹프로그래밍스쿨 7기<br>
     </div>
-    <div>
-        <div class="about-me-index">SKILL</div>
-        Django<br>
-        Linux<br>
-        Python / C / Java/ SQL<br>
-        AWS<br>
-        Docker<br>
+  </div>
+
+  <div class="about-me-skill">
+    <div class="about-me-index">SKILL</div>
+    <div class="about-me-context">
+      Python<br>
+      C<br>
+      Java<br>
+      Django<br>
+      Linux<br>
+      AWS<br>
+      Docker<br>
     </div>
+  </div>
+
+  <div class="about-me-contact">
+    <a href="https://github.com/kahee"  class="uk-icon-button" uk-icon="icon: github; ratio: 1.5;"></a>
+    <a href="https://www.facebook.com/kahee.yu.14" class="uk-icon-button" uk-icon="icon: facebook; ratio: 1.5;"></a>
+      <a href="https://kahee.github.io/" class="uk-icon-button" uk-icon="icon: link; ratio: 1.5;"></a>
+  </div>
 </div>

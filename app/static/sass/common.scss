@@ -51,6 +51,9 @@ body,html {
   padding-top: 0.1em;
   float: right;
   padding-right: 10px;
+  img {
+    height: 29px;
+  }
 }
 
 .hamburgerBar {
@@ -62,6 +65,9 @@ body,html {
   z-index: 999;
   &:hober {
     cursor:pointer;
+  }
+  img {
+    height: 29px;
   }
   .nav_bar1, .nav_bar2, .nav_bar3 {
     width: 30px;
@@ -166,40 +172,7 @@ nav {
   }
 }
 
-.content-about-me {
-  font-family: $font-Naum-m;
-  font-weight: blod;
-}
 
-.about-me-img {
-  margin: 35px 0;
-  width: 250px;
-  height: 250px;
-}
-
-.about-me-title {
-  font-family: 'BM HANNA 11yrs old';
-  font-size: 24px;
-  color: black;
-}
-
-.about-me-imgs {
-  width: 150px;
-  height: 150px;
-  float: right;
-}
-.about-me-intro {
-  margin: 10px 0;
-}
-.about-me-detail {
-  margin: 10px 0;
-}
-.about-me-index {
-  font-family: 'BM HANNA 11yrs old';
-  font-size: 1.0em;
-  margin: 0.3em 0;
-  color: black;
-}
 
 .video-title {
   padding-top: 35px;
@@ -216,12 +189,72 @@ nav {
   background: $backgroud-yellow;
 
   a {
-      text-decoration: none;
-      color: black;
+    text-decoration: none;
+    color: black;
   }
 
   a:hover {
     text-decoration: none;
     color: white;
+  }
+}
+
+#aboutMe {
+  padding-top: 45px;
+}
+
+.about-me-img {
+  margin-top: 35px;
+  margin-bottom: 12px;
+  width: 250px;
+  height: 250px;
+}
+
+.about-me-intro {
+  margin-top: 10px;
+  margin-bottom: 35px;
+
+  .about-me-title {
+    font-family: $font-Naum-m;
+    font-size: 24px;
+    color: black;
+    letter-spacing: 5px;
+    font-weight: bold;
+  }
+  .about-me-context {
+    margin-top: -7px;
+    font-size: 13px;
+  }
+}
+
+
+.about-me-index {
+  font-family: $font-Naum-m;
+  font-weight: bold;
+  font-size: 1.0em;
+  letter-spacing: 3px;
+  margin: 0.3em 0;
+  color: black;
+}
+
+.about-me-detail {
+  margin: 40px 0;
+  .about-me-context {
+    font-size: 13px;
+  }
+}
+
+.about-me-skill {
+  padding-bottom: 40px;
+  .about-me-context {
+    font-size: 15px;
+  }
+}
+
+.about-me-contact {
+  padding-bottom: 40px;
+
+  a {
+    margin-right: 5px;
   }
 }

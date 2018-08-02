@@ -31,7 +31,7 @@ introVideoTagA.addEventListener("click", function() {
  aboutMeTagA.addEventListener("click", function() {
   $("nav").toggleClass("close");
   $([document.documentElement, document.body]).animate({
-    scrollTop: $('#aboutMe').offset().top
+    scrollTop: $('#aboutMe').offset().top-30
 }, 1000);
 })
 

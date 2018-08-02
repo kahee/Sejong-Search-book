@@ -47,6 +47,10 @@ body, html {
   padding-right: 10px;
 }
 
+.nav-friend img {
+  height: 29px;
+}
+
 .hamburgerBar {
   margin-left: 10px;
   position: absolute;
@@ -58,6 +62,10 @@ body, html {
 
 .hamburgerBar:hober {
   cursor: pointer;
+}
+
+.hamburgerBar img {
+  height: 29px;
 }
 
 .hamburgerBar .nav_bar1, .hamburgerBar .nav_bar2, .hamburgerBar .nav_bar3 {
@@ -162,44 +170,6 @@ nav ul li a:hover {
   }
 }
 
-.content-about-me {
-  font-family: "Open Sans", sans-serif;
-  font-weight: blod;
-}
-
-.about-me-img {
-  margin: 35px 0;
-  width: 250px;
-  height: 250px;
-}
-
-.about-me-title {
-  font-family: 'BM HANNA 11yrs old';
-  font-size: 24px;
-  color: black;
-}
-
-.about-me-imgs {
-  width: 150px;
-  height: 150px;
-  float: right;
-}
-
-.about-me-intro {
-  margin: 10px 0;
-}
-
-.about-me-detail {
-  margin: 10px 0;
-}
-
-.about-me-index {
-  font-family: 'BM HANNA 11yrs old';
-  font-size: 1.0em;
-  margin: 0.3em 0;
-  color: black;
-}
-
 .video-title {
   padding-top: 35px;
   margin-bottom: 5px;
@@ -223,4 +193,66 @@ nav ul li a:hover {
 .video-plus-friend a:hover {
   text-decoration: none;
   color: white;
+}
+
+#aboutMe {
+  padding-top: 45px;
+}
+
+.about-me-img {
+  margin-top: 35px;
+  margin-bottom: 12px;
+  width: 250px;
+  height: 250px;
+}
+
+.about-me-intro {
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
+.about-me-intro .about-me-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  color: black;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.about-me-intro .about-me-context {
+  margin-top: -7px;
+  font-size: 13px;
+}
+
+.about-me-index {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1.0em;
+  letter-spacing: 3px;
+  margin: 0.3em 0;
+  color: black;
+}
+
+.about-me-detail {
+  margin: 40px 0;
+}
+
+.about-me-detail .about-me-context {
+  font-size: 13px;
+}
+
+.about-me-skill {
+  padding-bottom: 40px;
+}
+
+.about-me-skill .about-me-context {
+  font-size: 15px;
+}
+
+.about-me-contact {
+  padding-bottom: 40px;
+}
+
+.about-me-contact a {
+  margin-right: 5px;
 }
