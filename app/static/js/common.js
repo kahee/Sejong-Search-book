@@ -1,4 +1,5 @@
 
+var homeTagA =  document.getElementById("homeTagA")
 var introTagA =  document.getElementById("introTagA")
 var introVideoTagA = document.getElementById("introVideoTagA")
 var aboutMeTagA = document.getElementById("aboutMeTagA")
@@ -6,6 +7,7 @@ var aboutMeTagA = document.getElementById("aboutMeTagA")
 var hamburgerBar = document.getElementsByClassName("hamburgerBar");
 var nav =   document.getElementsByTagName("nav");
 
+var chevronTagA = document.getElementById("chevronTagA")
 
 function closeNav() {
   if (nav.classList) {
@@ -14,10 +16,20 @@ function closeNav() {
   }
 }
 
-introTagA.addEventListener("click", function() {
+
+
+
+homeTagA.addEventListener("click", function() {
   $("nav").toggleClass("close");
   $([document.documentElement, document.body]).animate({
     scrollTop: 0
+}, 1000);
+})
+
+introTagA.addEventListener("click", function() {
+  $("nav").toggleClass("close");
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $('#introduction').offset().top-100
 }, 1000);
 })
 
@@ -35,6 +47,11 @@ introVideoTagA.addEventListener("click", function() {
 }, 1000);
 })
 
+chevronTagA.addEventListener("click", function() {
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $('#introduction').offset().top-100
+}, 1000);
+})
 
 $(".hamburgerBar").click(function(){
   $("nav").removeClass("close");

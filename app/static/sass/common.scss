@@ -27,7 +27,7 @@ body,html {
   width: 960px;
   margin: 0 auto;
   background: $backgroud-yellow;
-  height: 55px;
+  height: 35px;
   padding: 10px 0;
 }
 
@@ -37,7 +37,6 @@ body,html {
 
 .middle-child {
   vertical-align: middle;
-  padding-top:7px;
 }
 
 .clearfix::after {
@@ -126,6 +125,7 @@ nav {
   opacity: 1;
 }
 
+
 // 본문
 .content {
   text-align:center;
@@ -133,9 +133,74 @@ nav {
   margin: 0 auto;
   background: $backgroud-gray;
 }
+
+.content-home {
+  margin: 0 auto;
+  padding-top: 75px;
+  padding-bottom: 25px;
+  height: 550px;
+  width: 960px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('../images/books.png');
+  background-position-x: -50px;
+  background-position-y: 30px;
+
+
+  .title {
+    font-family: 'BM HANNA 11yrs old';
+    color: white;
+    font-size: 40px;
+    margin-top: 85px;
+    margin-left: 25px;
+
+    .title-top {
+
+    }
+    .title-bottom {
+      margin-top: -10px;
+    }
+  }
+
+
+  .plus-friend {
+    // border: 1px solid;
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 20px;
+    margin-left: 25px;
+    margin-top: 15px;
+    color: black;
+    font-family: 'BM HANNA 11yrs old';
+    background: $backgroud-yellow;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  .content-icon {
+    text-align: center;
+    margin-top: 190px;
+    svg {
+      color: white;
+    }
+  }
+}
+
+
+
+
+
+
 // 세종대 도서 검색 플러스 친구 문구
 .slide-div {
-  margin-top: 75px;
+  padding-top: 70px;
   padding-bottom: 25px;
   background:$backgroud-yellow;
 }
@@ -167,40 +232,33 @@ nav {
   .content {
     width: 100%;
   }
+
+  .content-home {
+    width: 100%;
+  }
   .footer {
     width: 100%;
   }
 }
 
-
-
+//
+// #introductionVideo {
+//   height: 600px;
+// }
 .video-title {
+  font-size: 10px;
   padding-top: 35px;
-  margin-bottom: 5px;
+
 }
-.video-plus-friend {
-  // border: 1px solid;
-  display: inline-block;
-  padding: 10px 10px;
-  font-size: 20px;
-  margin-bottom: 30px;
+.video-logo {
+  font-family:  'BM HANNA 11yrs old';
+  font-size: 23px;
   color: black;
-  font-family: 'BM HANNA 11yrs old';
-  background: $backgroud-yellow;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:hover {
-    text-decoration: none;
-    color: white;
-  }
+  margin-bottom: 25px;
 }
 
 #aboutMe {
-  padding-top: 45px;
+  padding-top: 25px;
 }
 
 .about-me-img {

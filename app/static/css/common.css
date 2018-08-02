@@ -21,7 +21,7 @@ body, html {
   width: 960px;
   margin: 0 auto;
   background: #fae100;
-  height: 55px;
+  height: 35px;
   padding: 10px 0;
 }
 
@@ -31,7 +31,6 @@ body, html {
 
 .middle-child {
   vertical-align: middle;
-  padding-top: 7px;
 }
 
 .clearfix::after {
@@ -130,8 +129,63 @@ nav ul li a:hover {
   background: #f2f4f7;
 }
 
+.content-home {
+  margin: 0 auto;
+  padding-top: 75px;
+  padding-bottom: 25px;
+  height: 550px;
+  width: 960px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../images/books.png");
+  background-position-x: -50px;
+  background-position-y: 30px;
+}
+
+.content-home .title {
+  font-family: 'BM HANNA 11yrs old';
+  color: white;
+  font-size: 40px;
+  margin-top: 85px;
+  margin-left: 25px;
+}
+
+.content-home .title .title-bottom {
+  margin-top: -10px;
+}
+
+.content-home .plus-friend {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 20px;
+  margin-left: 25px;
+  margin-top: 15px;
+  color: black;
+  font-family: 'BM HANNA 11yrs old';
+  background: #fae100;
+}
+
+.content-home .plus-friend a {
+  text-decoration: none;
+  color: black;
+}
+
+.content-home .plus-friend a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.content-home .content-icon {
+  text-align: center;
+  margin-top: 190px;
+}
+
+.content-home .content-icon svg {
+  color: white;
+}
+
 .slide-div {
-  margin-top: 75px;
+  padding-top: 70px;
   padding-bottom: 25px;
   background: #fae100;
 }
@@ -165,38 +219,28 @@ nav ul li a:hover {
   .content {
     width: 100%;
   }
+  .content-home {
+    width: 100%;
+  }
   .footer {
     width: 100%;
   }
 }
 
 .video-title {
+  font-size: 10px;
   padding-top: 35px;
-  margin-bottom: 5px;
 }
 
-.video-plus-friend {
-  display: inline-block;
-  padding: 10px 10px;
-  font-size: 20px;
-  margin-bottom: 30px;
-  color: black;
+.video-logo {
   font-family: 'BM HANNA 11yrs old';
-  background: #fae100;
-}
-
-.video-plus-friend a {
-  text-decoration: none;
+  font-size: 23px;
   color: black;
-}
-
-.video-plus-friend a:hover {
-  text-decoration: none;
-  color: white;
+  margin-bottom: 25px;
 }
 
 #aboutMe {
-  padding-top: 45px;
+  padding-top: 25px;
 }
 
 .about-me-img {
