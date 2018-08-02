@@ -27,7 +27,7 @@ body,html {
   width: 960px;
   margin: 0 auto;
   background: $backgroud-yellow;
-  height: 35px;
+  height: 40px;
   padding: 10px 0;
 }
 
@@ -79,7 +79,8 @@ body,html {
 }
 
 nav {
-  background: white;
+  font-family: $font-Nanum;
+  background: $backgroud-gray;
   // 투명도 0.0 ~ 1.0
   opacity: 0.2;
   visibility: hidden;
@@ -93,12 +94,16 @@ nav {
     height: 100%;
     max-width: 100%;
     margin: 0;
-    padding: 0;
+    padding-top: 30px;
     box-sizing: border-box;
     text-align: center;
     list-style: none;
 
     li {
+      hr {
+        margin: 0;
+      }
+
       a {
         display: block;
         width: 100%;
@@ -107,9 +112,9 @@ nav {
         color: black;
         text-decoration: none;
         &:hover {
-          background:gray;
+          text-decoration: none;
           cursor:pointer;
-          color:black;
+          color:$backgroud-yellow;
         }
       }
     }

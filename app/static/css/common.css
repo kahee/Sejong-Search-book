@@ -21,7 +21,7 @@ body, html {
   width: 960px;
   margin: 0 auto;
   background: #fae100;
-  height: 35px;
+  height: 40px;
   padding: 10px 0;
 }
 
@@ -77,7 +77,8 @@ body, html {
 }
 
 nav {
-  background: white;
+  font-family: "Nanum Gothic", sans-serif;
+  background: #f2f4f7;
   opacity: 0.2;
   visibility: hidden;
   width: 100%;
@@ -91,10 +92,14 @@ nav ul {
   height: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 0;
+  padding-top: 30px;
   box-sizing: border-box;
   text-align: center;
   list-style: none;
+}
+
+nav ul li hr {
+  margin: 0;
 }
 
 nav ul li a {
@@ -107,9 +112,9 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background: gray;
+  text-decoration: none;
   cursor: pointer;
-  color: black;
+  color: #fae100;
 }
 
 .open {
