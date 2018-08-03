@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic|Open+Sans");
+@font-face {
+  font-family: 'BM HANNA 11yrs old';
+  src: url("../font/BMHANNA_11yrs_ttf.ttf"); }
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: "Nanum Gothic", sans-serif; }
+
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 2;
+  color: #666;
+  font-family: "Nanum Gothic", sans-serif;
+  width: 960px;
+  margin: 0 auto;
+  background: #fae100;
+  height: 40px;
+  padding: 10px 0; }
+
+.header-nav {
+  height: 100%; }
+
+.middle-child {
+  vertical-align: middle; }
+
+.clearfix::after {
+  content: '';
+  height: 0;
+  display: block;
+  clear: both; }
+
+.nav-friend {
+  padding-top: 0.1em;
+  float: right;
+  padding-right: 10px; }
+  .nav-friend img {
+    height: 29px; }
+
+.hamburgerBar {
+  margin-left: 10px;
+  position: absolute;
+  outline: none;
+  left: 0;
+  border: 0;
+  z-index: 999; }
+  .hamburgerBar:hober {
+    cursor: pointer; }
+  .hamburgerBar img {
+    height: 29px; }
+  .hamburgerBar .nav_bar1, .hamburgerBar .nav_bar2, .hamburgerBar .nav_bar3 {
+    width: 30px;
+    height: 5px;
+    border-radius: 100px;
+    background-color: black;
+    margin: 3px 0;
+    transition-duration: 0.4s; }
+
+nav {
+  font-family: "Nanum Gothic", sans-serif;
+  background: #f2f4f7;
+  opacity: 0.2;
+  visibility: hidden;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  transition-duration: .1s; }
+  nav ul {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-top: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    list-style: none; }
+    nav ul li hr {
+      margin: 0; }
+    nav ul li a {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      transition-duration: .4s;
+      color: black;
+      text-decoration: none; }
+      nav ul li a:hover {
+        text-decoration: none;
+        cursor: pointer;
+        color: #fae100; }
+
+.open {
+  visibility: visible;
+  opacity: 1; }
+
+.close {
+  visibility: hidden;
+  opacity: 1; }
+
+.content {
+  text-align: center;
+  width: 960px;
+  margin: 0 auto;
+  background: #f2f4f7; }
+
+.content-home {
+  margin: 0 auto;
+  padding-top: 75px;
+  padding-bottom: 25px;
+  height: 550px;
+  width: 960px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../images/books.png");
+  background-position-x: -50px;
+  background-position-y: 30px; }
+  .content-home .title {
+    font-family: 'BM HANNA 11yrs old';
+    color: white;
+    font-size: 40px;
+    margin-top: 85px;
+    margin-left: 25px; }
+    .content-home .title .title-bottom {
+      margin-top: -10px; }
+  .content-home .plus-friend {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 20px;
+    margin-left: 25px;
+    margin-top: 15px;
+    color: black;
+    font-family: 'BM HANNA 11yrs old';
+    background: #fae100; }
+    .content-home .plus-friend a {
+      text-decoration: none;
+      color: black; }
+    .content-home .plus-friend a:hover {
+      text-decoration: none;
+      color: white; }
+  .content-home .content-icon {
+    text-align: center;
+    margin-top: 190px; }
+    .content-home .content-icon svg {
+      color: white; }
+
+.slide-div {
+  padding-top: 70px;
+  padding-bottom: 25px;
+  background: #fae100; }
+
+.swiper-div {
+  text-align: center; }
+
+.content-div {
+  padding-bottom: 25px; }
+
+.content-text-title {
+  font-family: 'BM HANNA 11yrs old';
+  font-size: 24px;
+  color: black; }
+
+.content-text-context {
+  font-size: 15px; }
+
+.swiper-page-div .swiper-pagination-bullet {
+  margin: 0 10px; }
+
+@media (max-width: 960px) {
+  .header {
+    width: 100%; }
+
+  .content {
+    width: 100%; }
+
+  .content-home {
+    width: 100%; }
+
+  .footer {
+    width: 100%; } }
+.video-title {
+  font-size: 13px;
+  padding-top: 35px; }
+
+.video-logo {
+  font-family: 'BM HANNA 11yrs old';
+  font-size: 30px;
+  color: black;
+  margin-bottom: 25px; }
+
+#aboutMe {
+  padding-top: 25px; }
+
+.about-me-img {
+  margin-top: 35px;
+  margin-bottom: 12px;
+  width: 250px;
+  height: 250px; }
+
+.about-me-intro {
+  margin-top: 10px;
+  margin-bottom: 35px; }
+  .about-me-intro .about-me-title {
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    color: black;
+    letter-spacing: 5px;
+    font-weight: bold; }
+  .about-me-intro .about-me-context {
+    margin-top: -7px;
+    font-size: 15px; }
+
+.about-me-index {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1.0em;
+  letter-spacing: 3px;
+  margin: 0.3em 0;
+  color: black; }
+
+.about-me-detail {
+  margin: 40px 0; }
+  .about-me-detail .about-me-context {
+    font-size: 15px; }
+
+.about-me-skill {
+  padding-bottom: 40px; }
+  .about-me-skill .about-me-context {
+    font-size: 15px; }
+
+.about-me-contact {
+  padding-bottom: 40px; }
+  .about-me-contact a {
+    margin-right: 5px; }
+
+/*# sourceMappingURL=common.css.map */
