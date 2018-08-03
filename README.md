@@ -2,7 +2,7 @@
 
 ## 프로젝트 소개
 세종대학교 학술정보원에 있는 도서를 검색하여 도서 위치와 도서 대출 여부를 카카오톡으로 알려주는 서비스 
-<img src="../app/static/images/intro.png">
+<img src="./app/static/images/intro.png">
 
 ## 프로젝트 플러스친구 주소 
 http://pf.kakao.com/_YFgWC/
