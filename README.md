@@ -5,7 +5,7 @@
 ## 프로젝트 플러스친구 주소 
 http://pf.kakao.com/_YFgWC/
 
-## 프로젝트 소개 페이지 
+## 프로젝트 소개 페이지(모바일 전용)
 https://sejongbook.zoejoy.kr/
 
 ## 프로젝트 소개 영상 
