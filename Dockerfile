@@ -1,4 +1,4 @@
-FROM        ygh131/toy_project
+FROM        ygh131/sejong_search_book_project
 MAINTAINER  yuygh131@gmail.com
 
 ENV         BUILD_MODE              production
