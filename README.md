@@ -80,7 +80,7 @@ docker run --rm -it 8000:80 eb-docker:local
 `build.py`파일을 통해 좀 더 편리하게 각 환경에 따른 docker images 를 생성하도록 변경했다.
 
 
-### base build (base)
+### build base (base)
 `Dockerfile.base` build하고, 지정한 dockerhub에 `sejong-docker:base`를 push 실
 ```
 >> python build.py 
@@ -96,7 +96,7 @@ Successfully push docker images
 >> docker run --rm -it 8000:80 sejong-docker:base
 ```
 
-### local build (local 환경)
+### build local (local 환경)
 ```
 >> python build.py 
 Select the mode you want to build
@@ -108,7 +108,7 @@ Choice mode: 2
 Successfully build local
 >> docker run --rm -it 8000:80 sejong-docker:local
 ```
-### dev build (dev 환경)
+### build dev (dev 환경)
 ```
 >> python build.py 
 Select the mode you want to build
@@ -121,7 +121,7 @@ Successfully build dev
 >> docker run --rm -it 8000:80 sejong-docker:dev
 ```
 
-### production build (production - AWS 배포 환경)
+### build production (production - AWS 배포 환경)
 ```
 >> python build.py 
 Select the mode you want to build
