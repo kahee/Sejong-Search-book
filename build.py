@@ -51,7 +51,6 @@ def mode_function(mode):
     """
     if mode in MODES:
         cur_module = sys.modules[__name__]
-        print(cur_module)
         getattr(cur_module, f'build_{mode}')()
 
     else:
@@ -97,7 +96,7 @@ def build_dev():
 
 def build_production():
     """
-    build production docker images 
+    build production docker images
     :return:
     """
     try:
