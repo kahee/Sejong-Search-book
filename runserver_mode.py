@@ -50,6 +50,10 @@ def mode_runserver(mode):
     """
     if mode in MODES:
         os.environ['DJANGO_SETTINGS_MODULE'] = f'config.settings.{mode}'
+        if mode is 'local' or 'dev':
+            os.system('pip install -r .requirements/dev.txt')
+        else:
+            os.system('pip install -r .requirements/production.txt')
         os.system('python app/manage.py runserver')
 
     else:
