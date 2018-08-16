@@ -93,8 +93,12 @@ def plus_friend(request):
         request.JSON = json.loads(request.body.decode('utf-8'))
         user_key = request.JSON.get('user_key', '')
         if user_key:
+            print(f'{user_key}님이 친구추가를 하셨습니다.')
             user, _ = User.objects.get_or_create(
-                username=user_key
+                username=user_key,
+                defaults={
+                    'is_active': True,
+                }
             )
         return JsonResponse({})
 
@@ -102,6 +106,9 @@ def plus_friend(request):
 @csrf_exempt
 def delete_friend(request, user_key):
     if request.method == 'DELETE':
+        user = User.objects.get(username=user_key)
+        user.is_active = False
+        user.save()
         print(f'{user_key}님이 친구삭제를 하셨습니다.')
 
         return JsonResponse({})
