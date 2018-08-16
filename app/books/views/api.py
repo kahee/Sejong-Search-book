@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from members.models import UserKeyword
-from ..utils import HELP_TEXT, BUG_TEXT
+from ..utils import HELP_TEXT
 from ..utils.crawling import search_book
 
 User = get_user_model()
@@ -94,9 +94,12 @@ def plus_friend(request):
         user_key = request.JSON.get('user_key', '')
         if user_key:
             print(f'{user_key}님이 친구추가를 하셨습니다.')
-            user, _ = User.objects.get_or_create(
+            user, _ = User.objects.update_or_create(
                 username=user_key,
-                is_active=True,
+                defaults={
+                    "is_active": True,
+                }
+
             )
         return JsonResponse({})
 
