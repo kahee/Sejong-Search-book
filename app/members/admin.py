@@ -7,6 +7,7 @@ from .models import User, UserKeyword
 
 
 class UserAdmin(BaseUserAdmin):
+    ordering = ('-last_visit',)
     readonly_fields = ('last_visit',)
     list_display = ('username', 'last_visit', 'is_active', 'is_staff')
     fieldsets = (
