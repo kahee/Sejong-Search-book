@@ -96,9 +96,7 @@ def plus_friend(request):
             print(f'{user_key}님이 친구추가를 하셨습니다.')
             user, _ = User.objects.get_or_create(
                 username=user_key,
-                defaults={
-                    'is_active': True,
-                }
+                is_active=True,
             )
         return JsonResponse({})
 
