@@ -44,8 +44,7 @@ def message(request):
         else:
 
             user_key = return_json_str['user_key']
-            print(user_key)
-
+            print(f'user_key: {user_key} | content: {content}')
             # 키워드가 구토인경우 특정 출판사만 출력
             if content == '구토':
                 books, url = search_book('구토,문예출판사,')
