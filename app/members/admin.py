@@ -8,7 +8,7 @@ from .models import User, UserKeyword
 
 class UserAdmin(BaseUserAdmin):
     readonly_fields = ('last_visit',)
-    list_display = ('username', 'last_visit', 'is_staff')
+    list_display = ('username', 'last_visit', 'is_active', 'is_staff')
     fieldsets = (
         (None, {
             'fields': (
