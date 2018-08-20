@@ -1,0 +1,38 @@
+language: python
+python:
+- 3.6
+services:
+- postgresql
+addons:
+  postgresql: '9.4'
+before_install:
+- openssl aes-256-cbc -K $encrypted_b110979d019d_key -iv $encrypted_b110979d019d_iv
+  -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
+install:
+- pip install -r .requirements/production.txt
+branches:
+  only:
+  - master
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+script:
+- cd app
+- "./manage.py test"
+- cd ..
+- git add -A
+before_deploy:
+- zip -r archive.zip .
+deploy:
+  provider: elasticbeanstalk
+  zip_file: archive.zip
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+  region: ap-northeast-2
+  app: Toy-Project
+  env: Toy-Project-dev
+  bucket_name: toy-study-room
+  skip_cleanup: true
+  on:
+    branch: master
