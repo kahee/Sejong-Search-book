@@ -2,8 +2,11 @@ ted by https://www.gitignore.io/api/git,linux,macos,django,python,pycharm+all
 # Custom
 /.media
 /.static
+
+# Django secrets files
 /.secrets
 .secrets
+secrets.tar
 dump.rdb
 
 ### Django ###
@@ -231,3 +234,4 @@ venv.bak/
 !.elasticbeanstalk/*.global.yml
 
 
+.travis.yml

@@ -1,6 +1,9 @@
+import sys
+
 from .base import *
 
 import_secrets()
+
 DEBUG = False
 ALLOWED_HOSTS = [
     '.zoejoy.kr',
@@ -29,6 +32,21 @@ CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
 DEFAULT_FILE_STORAGE = 'config.storage.DefaultFilesStorage'
 # # Static files(collectstatic) 을 위한 스토리지
 STATICFILES_STORAGE = 'config.storage.StaticFilesStorage'
+
+# travis 에서 test 하는 경우 다른 db를 사용
+if 'test' in sys.argv:
+    # Test DB for Travis CI
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'travis_ci_test',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'PORT': 5432,
+            'HOST': 'localhost',
+        }
+    }
+
 
 # Log
 # /var/log/django 디렉토리가 존재하면 LOG_DIR로 그대로 사용
