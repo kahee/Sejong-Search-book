@@ -1,5 +1,3 @@
-import sys
-
 from .base import *
 
 import_secrets()
