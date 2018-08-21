@@ -34,7 +34,7 @@ DEFAULT_FILE_STORAGE = 'config.storage.DefaultFilesStorage'
 STATICFILES_STORAGE = 'config.storage.StaticFilesStorage'
 
 # travis 에서 test 하는 경우 다른 db를 사용
-if 'test' in sys.argv:
+if 'TRAVIS' in os.environ:
     # Test DB for Travis CI
     DATABASES = {
         'default': {
