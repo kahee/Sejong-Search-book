@@ -15,7 +15,7 @@ before_install:
   fi
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ];
   then
-  export DJANGO_SETTINGS_MODULE=config.settings.travis
+  export DJANGO_SETTINGS_MODULE=config.settings.travis;
   fi
 
 install:
