@@ -1,6 +1,7 @@
 from .base import *
 
-import_secrets()
+secrets = json.load(open(os.path.join(SECRETS_DIR, 'local.json'), 'rb'))
+DATABASES = secrets['DATABASES']
 
 DEBUG = True
 ALLOWED_HOSTS = []

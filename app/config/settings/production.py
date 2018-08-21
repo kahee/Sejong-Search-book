@@ -1,6 +1,7 @@
 from .base import *
+import raven
 
-import_secrets()
+secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json'), 'rb'))
 
 DEBUG = False
 ALLOWED_HOSTS = [
@@ -13,6 +14,7 @@ ALLOWED_HOSTS = [
     '110.76.143.236',
     '172.31.27.153',
 ]
+
 WSGI_APPLICATION = 'config.wsgi.production.application'
 INSTALLED_APPS += [
     'django_extensions',
@@ -44,6 +46,8 @@ if 'TRAVIS' in os.environ:
             'HOST': 'localhost',
         }
     }
+else:
+    DATABASES = secrets['DATABASES']
 
 
 # Log
@@ -92,6 +96,58 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# Sentry
+
+RAVEN_CONFIG = {
+    'dsn': secrets['SENTRY_DSN'],
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+}
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'ERROR',  # To capture more than ERROR, change to WARNING, INFO, etc.
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'root': {
+            'level': 'WARNING',
+            'handlers': ['sentry'],
+        },
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
 }
 
 

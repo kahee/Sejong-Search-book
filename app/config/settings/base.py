@@ -14,12 +14,9 @@ import os
 import raven
 import requests
 
-from djs import import_secrets
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-
 
 SECRETS_MODULES = {
     # Module's full path string
@@ -32,9 +29,22 @@ SECRETS_MODULES = {
 if 'config.settings.travis' not in os.environ:
     SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
     SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
-    secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
-    AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
-    import_secrets()
+    secrets = json.loads(open(SECRETS_BASE, 'rt').read())
+    SECRET_KEY = secrets['SECRET_KEY']
+
+    # AWS
+    AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
+    AWS_S3_REGION_NAME = secrets['AWS_S3_REGION_NAME']
+    AWS_S3_SIGNATURE_VERSION = secrets['AWS_S3_SIGNATURE_VERSION']
+    AWS_DEFAULT_ACL = secrets['AWS_DEFAULT_ACL']
+    AWS_ELASTIC_CACHE = secrets['AWS_ELASTIC_CACHE']
+
+    # CREATE SUPER USER
+    SUPERUSER_USERNAME = secrets['SUPERUSER_USERNAME']
+    SUPERUSER_PASSWORD = secrets['SUPERUSER_PASSWORD']
+    SUPERUSER_EMAIL = secrets['SUPERUSER_EMAIL']
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
@@ -125,49 +135,3 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-
-# Sentry
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s '
-                      '%(process)d %(thread)d %(message)s'
-        },
-    },
-    'handlers': {
-        'sentry': {
-            'level': 'ERROR',  # To capture more than ERROR, change to WARNING, INFO, etc.
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'root': {
-            'level': 'WARNING',
-            'handlers': ['sentry'],
-        },
-        'django.db.backends': {
-            'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'raven': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'sentry.errors': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-    },
-}
