@@ -29,7 +29,7 @@ SECRETS_MODULES = {
 }
 
 # SECRAET
-if 'TRAVIS_PULL_REQUEST' not in os.environ:
+if 'config.settings.travis' not in os.environ:
     SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
     SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
     secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
