@@ -2,6 +2,7 @@ from .base import *
 
 DEBUG = True
 ALLOWED_HOSTS = []
+
 WSGI_APPLICATION = 'config.wsgi.travis.application'
 SECRET_KEY = "46sufpz*^nu$bvx!tkl45a!3#3^n83c0#8h336q@j1g7)12345",
 

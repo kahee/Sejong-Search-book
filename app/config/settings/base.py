@@ -29,12 +29,15 @@ SECRETS_MODULES = {
 }
 
 # SECRAET
-SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
-SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
-secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
-AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
-import_secrets()
+if 'TRAVIS_PULL_REQUEST' not in os.environ:
+    SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
+    SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
+    secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
+    AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
+    import_secrets()
 
+else:
+    print(os.environ)
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
