@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 ROOT_DIR = os.path.dirname(BASE_DIR)
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
+
 SECRETS_MODULES = {
     # Module's full path string
     'raven': 'raven',
@@ -28,13 +29,12 @@ SECRETS_MODULES = {
 }
 
 # SECRAET
-# pull request 인 경우엔 secret 필요없기때문에 선언하지 않는다.
-if 'TRAVIS_PULL_REQUEST' not in os.environ:
-    SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
-    SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
-    secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
-    AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
-    import_secrets()
+SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
+SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
+secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
+AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
+import_secrets()
+
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
