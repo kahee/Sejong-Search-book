@@ -64,7 +64,7 @@ http://pf.kakao.com/_YFgWC/
 - Python(3.6)
 - S3 Bucket, 해당 Bucket을 사용할 수 있는 IAM User의 AWS AccessKey, SecretAccessKey
 - RDS Database(보안그룹 허용 필요), 해당 database를 사용할 수 있는 RDS의  User,Password
-- ElastiCache 사용을 위해 RDS 보안그룹에 Reids 포트 추가
+- ElastiCache 사용을 위해 RDS 보안그룹에 Redis 포트 추가
 
 -----
 
