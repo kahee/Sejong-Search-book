@@ -4,7 +4,6 @@ boto3<1.7
 celery==4.2.0
 Django<2.1
 django-extensions==2.0.7
-django-json-secrets==0.1.9
 django-storages==1.6.5
 lxml==4.2.1
 Pillow<6.0.0
