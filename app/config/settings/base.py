@@ -36,9 +36,6 @@ if 'TRAVIS_PULL_REQUEST' not in os.environ:
     AWS_ELASTIC_CACHE = secrets_base['AWS_ELASTIC_CACHE']
     import_secrets()
 
-else:
-    print(os.environ)
-
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')

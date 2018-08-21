@@ -26,6 +26,7 @@ branches:
 before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 script:
+- echo $DJANGO_SETTINGS_MODULE
 - cd app
 - "./manage.py test"
 - cd ..
