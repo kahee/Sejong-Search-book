@@ -18,10 +18,11 @@ from djs import import_secrets
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
-TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
 
 SECRETS_MODULES = {
-    # Module's full path stri1ng
+    # Module's full path string
     'raven': 'raven',
     # Python module object
     'requests': requests,
