@@ -1,4 +1,4 @@
-# 세종대 도서 검색 챗봇 서비스
+# 세종대 도서 검색 챗봇 서비스  [![Build Status](https://travis-ci.org/kahee/Sejong-Search-book.svg?branch=master)](https://travis-ci.org/kahee/Sejong-Search-book)
 
 ## 프로젝트 소개
 <img src="./app/static/images/intro.png">
