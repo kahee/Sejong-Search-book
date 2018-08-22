@@ -56,7 +56,6 @@ tabulate==0.7.5
 termcolor==1.1.0
 texttable==0.9.1
 traitlets==4.3.2
-UNKNOWN==0.0.0
 urllib3==1.22
 uWSGI==2.0.17
 vine==1.1.4
