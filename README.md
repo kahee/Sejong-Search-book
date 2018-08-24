@@ -31,6 +31,7 @@ http://pf.kakao.com/_YFgWC/
     - Route 53
     - Sentry
     - S3
+    - Travis
 
 - 주요 내용
     - 개발 환경 분리 (local/dev/production)
@@ -39,7 +40,7 @@ http://pf.kakao.com/_YFgWC/
     - `build.py` 파일로 각 환경에 따른 dockerfiles build 가능
     - `deploy.sh` 파일로 배포 실행
     - `.secrets` 폴더로 비밀키 관리
-    - `django-json-secrets` 패키지를 활용하여 비밀키를 좀 더 편리하게 관리 (참고)[https://github.com/LeeHanYeong/django-json-secrets]
+    - CI를 사용한 커밋단위 테스트, 배포 자동화
     - 발생된 오류 로그는 Sentry에 등록된 메일로 확인 가능
 
 ----
