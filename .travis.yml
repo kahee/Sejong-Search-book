@@ -9,10 +9,10 @@ before_install:
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then openssl aes-256-cbc -K $encrypted_cc51d60ef425_key -iv $encrypted_cc51d60ef425_iv
   -in secrets.tar.enc -out secrets.tar -d;
   tar xvf secrets.tar;
-  ehco IS NOT PR;
+  echo 'IS NOT PR';
   fi
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export DJANGO_SETTINGS_MODULE=config.settings.travis;
-  echo IS PR;
+  echo 'IS PR';
   fi
 install:
 - pip install -r .requirements/production.txt
