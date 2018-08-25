@@ -25,7 +25,7 @@ SECRETS_MODULES = {
     'requests': requests,
 }
 
-# SECRAET
+# SECRETS
 if 'TRAVIS_PULL_REQUEST' not in os.environ:
     SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
     SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
