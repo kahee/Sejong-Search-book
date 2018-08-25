@@ -10,7 +10,6 @@ before_install:
   -in secrets.tar.enc -out secrets.tar -d;
   tar xvf secrets.tar;
   echo 'IS NOT PR';
-  export DJANGO_SETTINGS_MODULE=config.settings.production;
   fi
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export DJANGO_SETTINGS_MODULE=config.settings.travis;
   echo 'IS PR';
@@ -23,7 +22,6 @@ branches:
 before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 script:
-- echo $DJANGO_SETTINGS_MODULE
 - cd app
 - "./manage.py test"
 - cd ..
