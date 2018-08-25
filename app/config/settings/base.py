@@ -27,6 +27,7 @@ SECRETS_MODULES = {
 
 # SECRETS
 if 'TRAVIS_PULL_REQUEST' in os.environ:
+    print(os.environ)
     if os.environ['TRAVIS_PULL_REQUEST'] is False:
         print('pr 요청이 아닌 경우')
         SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
