@@ -25,10 +25,8 @@ SECRETS_MODULES = {
     'requests': requests,
 }
 
-print(os.environ)
-print(os.environ['DJANGO_SETTINGS_MODULE'])
 # SECRETS
-if 'TRAVIS_PULL_REQUEST' not in os.environ:
+if os.environ['TRAVIS_PULL_REQUEST'] is False:
     print(os.environ)
     print(os.environ['DJANGO_SETTINGS_MODULE'])
     SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
