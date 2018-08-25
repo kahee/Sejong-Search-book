@@ -24,29 +24,48 @@ SECRETS_MODULES = {
     'requests': requests,
 }
 
-# # SECRETS
-# if 'TRAVIS_PULL_REQUEST' in os.environ:
-#     if os.environ['TRAVIS_PULL_REQUEST'] is False:
-#         print(os.environ)
-#         print(os.environ['DJANGO_SETTINGS_MODULE'])
-        # SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
-        # SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
-        # secrets = json.loads(open(SECRETS_BASE, 'rt').read())
-        # SECRET_KEY = secrets['SECRET_KEY']
-        #
-        # # AWS
-        # AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
-        # AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
-        # AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
-        # AWS_S3_REGION_NAME = secrets['AWS_S3_REGION_NAME']
-        # AWS_S3_SIGNATURE_VERSION = secrets['AWS_S3_SIGNATURE_VERSION']
-        # AWS_DEFAULT_ACL = secrets['AWS_DEFAULT_ACL']
-        # AWS_ELASTIC_CACHE = secrets['AWS_ELASTIC_CACHE']
-        #
-        # # CREATE SUPER USER
-        # SUPERUSER_USERNAME = secrets['SUPERUSER_USERNAME']
-        # SUPERUSER_PASSWORD = secrets['SUPERUSER_PASSWORD']
-        # SUPERUSER_EMAIL = secrets['SUPERUSER_EMAIL']
+# SECRETS
+print(os.environ)
+
+if 'TRAVIS_MODULE' not in os.environ:
+    SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
+    SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
+    secrets = json.loads(open(SECRETS_BASE, 'rt').read())
+    SECRET_KEY = secrets['SECRET_KEY']
+
+    # AWS
+    AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
+    AWS_S3_REGION_NAME = secrets['AWS_S3_REGION_NAME']
+    AWS_S3_SIGNATURE_VERSION = secrets['AWS_S3_SIGNATURE_VERSION']
+    AWS_DEFAULT_ACL = secrets['AWS_DEFAULT_ACL']
+    AWS_ELASTIC_CACHE = secrets['AWS_ELASTIC_CACHE']
+
+    # CREATE SUPER USER
+    SUPERUSER_USERNAME = secrets['SUPERUSER_USERNAME']
+    SUPERUSER_PASSWORD = secrets['SUPERUSER_PASSWORD']
+    SUPERUSER_EMAIL = secrets['SUPERUSER_EMAIL']
+else:
+    if os.environ['TRAVIS_MODULE'] is False:
+        SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
+        SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
+        secrets = json.loads(open(SECRETS_BASE, 'rt').read())
+        SECRET_KEY = secrets['SECRET_KEY']
+
+        # AWS
+        AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
+        AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
+        AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
+        AWS_S3_REGION_NAME = secrets['AWS_S3_REGION_NAME']
+        AWS_S3_SIGNATURE_VERSION = secrets['AWS_S3_SIGNATURE_VERSION']
+        AWS_DEFAULT_ACL = secrets['AWS_DEFAULT_ACL']
+        AWS_ELASTIC_CACHE = secrets['AWS_ELASTIC_CACHE']
+
+        # CREATE SUPER USER
+        SUPERUSER_USERNAME = secrets['SUPERUSER_USERNAME']
+        SUPERUSER_PASSWORD = secrets['SUPERUSER_PASSWORD']
+        SUPERUSER_EMAIL = secrets['SUPERUSER_EMAIL']
 
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
