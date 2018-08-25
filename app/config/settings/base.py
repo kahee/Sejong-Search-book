@@ -25,8 +25,12 @@ SECRETS_MODULES = {
     'requests': requests,
 }
 
+print(os.environ)
+print(os.environ['DJANGO_SETTINGS_MODULE'])
 # SECRETS
 if 'TRAVIS_PULL_REQUEST' not in os.environ:
+    print(os.environ)
+    print(os.environ['DJANGO_SETTINGS_MODULE'])
     SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
     SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
     secrets = json.loads(open(SECRETS_BASE, 'rt').read())
