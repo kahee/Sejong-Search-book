@@ -28,8 +28,9 @@ SECRETS_MODULES = {
 # SECRETS
 if 'TRAVIS_PULL_REQUEST' in os.environ:
     print(os.environ)
-    if not os.environ['TRAVIS_PULL_REQUEST']:
+    if os.environ['TRAVIS_PULL_REQUEST'] is False:
         print('pr 요청이 아닌 경우')
+        print(os.environ['TRAVIS_PULL_REQUEST'])
         SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
         SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
         SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
