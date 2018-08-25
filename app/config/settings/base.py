@@ -44,7 +44,9 @@ if 'TRAVIS_PULL_REQUEST' not in os.environ:
     SUPERUSER_USERNAME = SECRETS['SUPERUSER_USERNAME']
     SUPERUSER_PASSWORD = SECRETS['SUPERUSER_PASSWORD']
     SUPERUSER_EMAIL = SECRETS['SUPERUSER_EMAIL']
+
 else:
+    print('pr 요청이 아닌 경우')
     if os.environ['TRAVIS_PULL_REQUEST'] is False:
         SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
         SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
@@ -64,9 +66,6 @@ else:
         SUPERUSER_USERNAME = SECRETS['SUPERUSER_USERNAME']
         SUPERUSER_PASSWORD = SECRETS['SUPERUSER_PASSWORD']
         SUPERUSER_EMAIL = SECRETS['SUPERUSER_EMAIL']
-
-
-
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
