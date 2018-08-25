@@ -1,5 +1,4 @@
-from .base import *
-
+from config.settings import *
 
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'dev.json'), 'rb'))
 DATABASES = secrets['DATABASES']

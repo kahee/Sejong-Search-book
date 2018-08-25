@@ -1,4 +1,4 @@
-from .base import *
+from config.settings import *
 import raven
 
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json'), 'rb'))
