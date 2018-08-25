@@ -82,7 +82,7 @@ docker run --rm -it 8000:80 eb-docker:local
 
 
 ### build base (base)
-`Dockerfile.base` build하고, 지정한 dockerhub에 `sejong-docker:base`를 push 실
+`Dockerfile.base` build하고, 지정한 dockerhub에 `sejong-docker:base`를 push 실행
 ```
 >> python build.py 
 Select the mode you want to build
