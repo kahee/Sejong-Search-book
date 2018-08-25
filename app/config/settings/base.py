@@ -25,9 +25,7 @@ SECRETS_MODULES = {
 }
 
 # SECRETS
-print(os.environ)
-
-if 'TRAVIS_MODULE' not in os.environ:
+if 'TRAVIS_PULL_REQUEST' not in os.environ:
     SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
     SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
     secrets = json.loads(open(SECRETS_BASE, 'rt').read())
@@ -46,8 +44,9 @@ if 'TRAVIS_MODULE' not in os.environ:
     SUPERUSER_USERNAME = secrets['SUPERUSER_USERNAME']
     SUPERUSER_PASSWORD = secrets['SUPERUSER_PASSWORD']
     SUPERUSER_EMAIL = secrets['SUPERUSER_EMAIL']
+
 else:
-    if os.environ['TRAVIS_MODULE'] is False:
+    if os.environ['TRAVIS_PULL_REQUEST'] is False:
         SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
         SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
         secrets = json.loads(open(SECRETS_BASE, 'rt').read())
@@ -66,7 +65,6 @@ else:
         SUPERUSER_USERNAME = secrets['SUPERUSER_USERNAME']
         SUPERUSER_PASSWORD = secrets['SUPERUSER_PASSWORD']
         SUPERUSER_EMAIL = secrets['SUPERUSER_EMAIL']
-
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
