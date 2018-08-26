@@ -16,9 +16,8 @@ class Book(models.Model):
         max_length=255,
         blank=True,
     )
-    book_author = models.CharField(
+    book_author = models.TextField(
         verbose_name='서명/저자',
-        max_length=255,
         blank=True,
     )
     book_personnel_author = models.TextField(
