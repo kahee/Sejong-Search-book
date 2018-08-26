@@ -51,8 +51,8 @@ SECRETS_MODULES = {
 #         SUPERUSER_EMAIL = SECRETS['SUPERUSER_EMAIL']
 
 if os.environ.get('TRAVIS_PULL_REQUEST'):
+    print(os.environ.get('TRAVIS_PULL_REQUEST'))
     if not os.environ.get('TRAVIS_PULL_REQUEST'):
-        print(os.environ.get('TRAVIS_PULL_REQUEST'))
         SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
         SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
         SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
