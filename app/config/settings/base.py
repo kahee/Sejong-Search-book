@@ -16,7 +16,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 ROOT_DIR = os.path.dirname(BASE_DIR)
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-print(os.environ)
 if os.environ.get('TRAVIS'):
     print(os.environ.get('TRAVIS_PULL_REQUEST'))
     if os.environ.get('TRAVIS_PULL_REQUEST') is False:
@@ -38,24 +37,6 @@ if os.environ.get('TRAVIS'):
         SUPERUSER_USERNAME = SECRETS['SUPERUSER_USERNAME']
         SUPERUSER_PASSWORD = SECRETS['SUPERUSER_PASSWORD']
         SUPERUSER_EMAIL = SECRETS['SUPERUSER_EMAIL']
-else:
-    SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
-    SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
-    SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
-    SECRET_KEY = SECRETS['SECRET_KEY']
-    # AWS
-    AWS_ACCESS_KEY_ID = SECRETS['AWS_ACCESS_KEY_ID']
-    AWS_SECRET_ACCESS_KEY = SECRETS['AWS_SECRET_ACCESS_KEY']
-    AWS_STORAGE_BUCKET_NAME = SECRETS['AWS_STORAGE_BUCKET_NAME']
-    AWS_S3_REGION_NAME = SECRETS['AWS_S3_REGION_NAME']
-    AWS_S3_SIGNATURE_VERSION = SECRETS['AWS_S3_SIGNATURE_VERSION']
-    AWS_DEFAULT_ACL = SECRETS['AWS_DEFAULT_ACL']
-    AWS_ELASTIC_CACHE = SECRETS['AWS_ELASTIC_CACHE']
-
-    # CREATE SUPER USER
-    SUPERUSER_USERNAME = SECRETS['SUPERUSER_USERNAME']
-    SUPERUSER_PASSWORD = SECRETS['SUPERUSER_PASSWORD']
-    SUPERUSER_EMAIL = SECRETS['SUPERUSER_EMAIL']
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
