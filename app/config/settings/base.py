@@ -49,10 +49,12 @@ SECRETS_MODULES = {
 #         SUPERUSER_USERNAME = SECRETS['SUPERUSER_USERNAME']
 #         SUPERUSER_PASSWORD = SECRETS['SUPERUSER_PASSWORD']
 #         SUPERUSER_EMAIL = SECRETS['SUPERUSER_EMAIL']
-
-if os.environ.get('TRAVIS_PULL_REQUEST'):
+print('base.py')
+print(os.environ)
+if os.environ.get('TRAVIS'):
     print(os.environ.get('TRAVIS_PULL_REQUEST'))
-    if not os.environ.get('TRAVIS_PULL_REQUEST'):
+    if os.environ.get('TRAVIS_PULL_REQUEST') is False:
+        print(os.environ)
         SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
         SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
         SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
