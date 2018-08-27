@@ -22,6 +22,7 @@ if 'TRAVIS' in os.environ:
             'HOST': 'localhost',
         }
     }
+# local 서버 실행시 사용하는 DB
 else:
     DATABASES = {
         'default': {
