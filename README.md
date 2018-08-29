@@ -138,7 +138,7 @@ Successfully build production
 
 ## Dockerhub 
 ```
-docker build -t eb-docker:base -f Dockerfile.base
+docker build -t eb-docker:base -f Dockerfile.base .
 docker tag eb-docker:base <자신의 사용자명>/<저장소명>:base
 docker push <사용자명>/<저장소명>:base
 ```
