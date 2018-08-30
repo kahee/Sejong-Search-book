@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 
 from ..models import Book
 
-
 __all__ = (
     'get_book_detail',
     'get_book_location',
@@ -69,43 +68,46 @@ def get_book_location(book_id, book_info=None):
 
     r = requests.post('http://library.sejong.ac.kr/search/ItemDetailSimple.axa', data=post_format)
     test = BeautifulSoup(r.content, 'html.parser')
-    tbody = test.find('tbody').find_all('tr')
+    try:
+        tbody = test.find('tbody').find_all('tr')
+    except AttributeError as e:
+        books_list = list()
+    else:
+        # book_list = ['제1자료실(5층)', '658.31125 한17공3', '대출가능'] 정보 가진 리스트
+        books_list = list()
+        for item in tbody:
+            td = item.find_all('td')
 
-    # book_list = ['제1자료실(5층)', '658.31125 한17공3', '대출가능'] 정보 가진 리스트
-    books_list = list()
-    for item in tbody:
-        td = item.find_all('td')
+            # location_list = ['000000911692', '제2자료실(6층)', '811.4 이19말', '대출가능']
+            # book = ['제2자료실(6층)', '811.4 이19말', '대출가능']
+            # book_info = Book 모델 객체 (해당 book_id를 가진 모델)
+            book = list()
+            location_list = list()
+            for num, td_item in enumerate(td):
+                if num is 0:
+                    # ['000000572988']
+                    location_list.append(td_item.get_text(strip=True))
+                if num in range(1, 4):
+                    location_list.append(td_item.get_text(strip=True))
+                    book.append(td_item.get_text(strip=True))
 
-        # location_list = ['000000911692', '제2자료실(6층)', '811.4 이19말', '대출가능']
-        # book = ['제2자료실(6층)', '811.4 이19말', '대출가능']
-        # book_info = Book 모델 객체 (해당 book_id를 가진 모델)
-        book = list()
-        location_list = list()
-        for num, td_item in enumerate(td):
-            if num is 0:
-                # ['000000572988']
-                location_list.append(td_item.get_text(strip=True))
-            if num in range(1, 4):
-                location_list.append(td_item.get_text(strip=True))
-                book.append(td_item.get_text(strip=True))
+            # BookLocation 모델 생성
+            register_id = location_list[0]
+            location = location_list[1]
+            book_code = location_list[2]
+            from books import tasks
+            tasks.book_location_save.delay(book_id, register_id, location, book_code)
 
-        # BookLocation 모델 생성
-        register_id = location_list[0]
-        location = location_list[1]
-        book_code = location_list[2]
-        from books import tasks
-        tasks.book_location_save.delay(book_id, register_id, location, book_code)
+            # book_location, _ = BookLocation.objects.update_or_create(
+            #     register_id=location_list[0],
+            #     defaults={
+            #         'location': location_list[1],
+            #         'book_code': location_list[2],
+            #         'book': Book.objects.get(book_id=book_id),
+            #     }
+            # )
 
-        # book_location, _ = BookLocation.objects.update_or_create(
-        #     register_id=location_list[0],
-        #     defaults={
-        #         'location': location_list[1],
-        #         'book_code': location_list[2],
-        #         'book': Book.objects.get(book_id=book_id),
-        #     }
-        # )
-
-        books_list.append(book)
+            books_list.append(book)
 
     return books_list
 
@@ -150,11 +152,17 @@ def get_book_lists(keyword):
             # locations = ['제1자료실(5층)', '658.31125 한17공3', '대출가능']
             locations = get_book_location(book_id)
 
-            books_status = ''
-            for items in locations:
-                # 도서 위치 string으로 변환
-                # books_status = 보존서고10층A(9층문의), 658.01 공19ㅅ, 대출불가
-                books_status = books_status + ', '.join(str(item) for item in items) + '\n'
+            if not locations:
+                # 도서 정보만 있고 위치 정보가 없는 경우
+                # ex) 1525044
+                books_status = '현재 이 도서에 대한 정보가 없습니다.' + "\n"
+                print(f'{book_id} - 도서 위치 정보 없음')
+            else:
+                books_status = ''
+                for items in locations:
+                    # 도서 위치 string으로 변환
+                    # books_status = 보존서고10층A(9층문의), 658.01 공19ㅅ, 대출불가
+                    books_status = books_status + ', '.join(str(item) for item in items) + '\n'
 
             for num, item in enumerate(book.contents):
                 # 책 제목
@@ -167,6 +175,7 @@ def get_book_lists(keyword):
             book_info_result = re.sub(r'/', '', book_info_result)
 
             books = books + book_title + "\n" + book_info_result + "\n" + books_status + "---------" + "\n"
+
         return books, response.url
 
     # 검색한 키워드 결과가 없는 경우
