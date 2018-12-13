@@ -24,13 +24,13 @@ INSTALLED_APPS += [
 # SECURE_SSL_REDIRECT = True
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Celery
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-
 # # Celery
-# CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
-# CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Celery
+CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
+CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
 
 # Media(user-uploaded file)을 위한 스토리지
 DEFAULT_FILE_STORAGE = 'config.storage.DefaultFilesStorage'
