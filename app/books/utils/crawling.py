@@ -95,8 +95,8 @@ def get_book_location(book_id, book_info=None):
             register_id = location_list[0]
             location = location_list[1]
             book_code = location_list[2]
-            from books import tasks
-            tasks.book_location_save.delay(book_id, register_id, location, book_code)
+            # from books import tasks
+            # tasks.book_location_save.delay(book_id, register_id, location, book_code)
 
             # book_location, _ = BookLocation.objects.update_or_create(
             #     register_id=location_list[0],
@@ -144,7 +144,7 @@ def get_book_lists(keyword):
 
             # 도서 상세 정보 저장 -> celery 로 실행
             from books import tasks
-            tasks.book_detail_save.delay(book_id)
+            # tasks.book_detail_save.delay(book_id)
 
             # get_book_detail(book_id)
 
