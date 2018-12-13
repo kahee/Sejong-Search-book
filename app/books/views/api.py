@@ -76,6 +76,7 @@ def message(request):
                 )
                 user.keyword = keyword
                 user.save()
+                print(books)
                 return JsonResponse({
                     'message': {
                         'text': books,
