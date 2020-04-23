@@ -5,7 +5,7 @@
 세종대학교 학술정보원에 있는 도서를 검색하여 도서 위치와 도서 대출 여부를 카카오톡으로 알려주는 서비스
 
 ## 프로젝트 소개 페이지(모바일 전용)
-https://joy-zoe.com/
+http://joy-zoe.com/
 
 ## 프로젝트 소개 영상
 https://youtu.be/6JNkitsukrM/
