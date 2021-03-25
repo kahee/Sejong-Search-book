@@ -43,7 +43,7 @@ ptyprocess==0.5.2
 Pygments==2.2.0
 python-dateutil==2.7.2
 pytz==2018.4
-PyYAML==3.12
+PyYAML==5.4
 raven==6.7.0
 redis==2.10.6
 requests==2.18.4
