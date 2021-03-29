@@ -40,7 +40,7 @@ Pillow==5.1.0
 prompt-toolkit==1.0.15
 psycopg2-binary==2.7.4
 ptyprocess==0.5.2
-Pygments==2.2.0
+Pygments==2.7.4
 python-dateutil==2.7.2
 pytz==2018.4
 PyYAML==3.12
